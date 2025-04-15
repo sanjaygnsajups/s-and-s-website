@@ -1,138 +1,109 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Needle & Threads - On the spot!</title>
+    <title>Needle & Threads - Luxury Clothing</title>
     <style>
-        body {
+        /* Basic Reset */
+        * {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #FFD700; /* Golden color */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: center;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #fff; /* Clean white background */
+            color: #333;
+            line-height: 1.6;
         }
 
         /* Navigation Bar */
         nav {
             width: 100%;
-            background-color: #222;
-            color: white;
-            padding: 15px 20px;
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
             position: fixed;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
             font-size: 1.2em;
+            font-weight: 500;
+            margin: 0 20px;
+            letter-spacing: 1px;
         }
 
         nav a:hover {
-            color: #FFD700;
+            color: #FFD700; /* Golden color for hover */
         }
 
         /* Hero Section */
         header {
             width: 100%;
-            padding: 80px 20px; /* Adjusted padding */
-            background-color: #222;
+            height: 100vh;
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Add your own high-quality image */
+            background-size: cover;
+            background-position: center;
             color: white;
             text-align: center;
-            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
         }
 
-        h1 {
-            font-size: 3.5em; /* Increased font size for better visibility */
-            margin: 20px 0;
+        header h1 {
+            font-size: 4.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
         }
 
-        h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            color: #ccc;
+        header h2 {
+            font-size: 2em;
+            font-weight: 300;
+            margin-bottom: 30px;
         }
 
-        p {
+        header p {
             font-size: 1.2em;
-            margin: 20px 0;
-            color: #ddd;
+            font-weight: 400;
+            max-width: 600px;
+            margin-bottom: 40px;
         }
 
         /* About Us Section */
         #about {
-            padding: 50px 20px;
-            background-color: white;
-            color: #333;
-            width: 90%; /* Adjusted width */
+            padding: 80px 20px;
+            background-color: #f8f8f8;
+            text-align: center;
             max-width: 1200px;
-            margin: 40px 0;
-            border-radius: 10px;
+            margin: 0 auto;
         }
 
         #about h2 {
-            font-size: 2em;
+            font-size: 3em;
             margin-bottom: 20px;
+            font-weight: 700;
         }
 
         #about p {
-            font-size: 1.2em;
-            line-height: 1.5em;
-        }
-
-        /* Join the Club Section */
-        #join-club {
-            padding: 40px 20px;
-            background-color: #222;
-            color: white;
-            width: 90%; /* Adjusted width */
+            font-size: 1.5em;
+            line-height: 1.8;
+            margin-bottom: 30px;
             max-width: 800px;
-            border-radius: 10px;
-            margin: 40px 0;
-        }
-
-        #join-club h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        #join-club p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
-        #join-club input[type="email"] {
-            padding: 10px;
-            font-size: 1em;
-            width: 75%; /* Adjusted input width */
-            margin-right: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-
-        #join-club input[type="submit"] {
-            padding: 10px 20px;
-            background-color: #FFD700;
-            color: white;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #join-club input[type="submit"]:hover {
-            background-color: #222;
+            margin: 0 auto;
         }
 
         /* Product Gallery */
@@ -140,91 +111,85 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            padding: 20px;
-            width: 90%;
+            padding: 50px 20px;
+            margin-top: 40px;
             max-width: 1200px;
+            margin: 0 auto;
         }
 
         .product-item {
+            position: relative;
             background-color: #fff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            text-align: center;
-            padding: 20px;
-            transition: transform 0.3s;
-        }
-
-        .product-item:hover {
-            transform: scale(1.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product-item img {
             width: 100%;
-            height: auto;
-            border-radius: 10px;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-item:hover img {
+            opacity: 0.8;
         }
 
         .product-item h3 {
-            font-size: 1.5em;
-            margin: 15px 0;
-            color: #333;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 2em;
+            font-weight: 700;
         }
 
         .product-item .btn {
-            background-color: #222;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #FFD700;
             color: #fff;
-            padding: 10px 20px;
-            text-decoration: none;
             border-radius: 5px;
-            transition: background 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
         }
 
         .product-item .btn:hover {
-            background-color: #444;
-        }
-
-        /* FAQ Section */
-        #faq {
-            padding: 50px 20px;
-            background-color: white;
-            color: #333;
-            width: 90%; /* Adjusted width */
-            max-width: 1200px;
-            margin: 40px 0;
-            border-radius: 10px;
-        }
-
-        #faq h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-
-        #faq p {
-            font-size: 1.2em;
-            line-height: 1.5em;
+            background-color: #333;
         }
 
         /* Footer Section */
         footer {
             background-color: #222;
             color: white;
-            padding: 20px;
-            width: 100%;
+            padding: 40px 20px;
             text-align: center;
         }
 
         footer .social a {
-            margin: 0 10px;
-            text-decoration: none;
+            margin: 0 15px;
             color: white;
-            font-size: 1.5em;
+            font-size: 2em;
+            text-decoration: none;
         }
 
         footer .footer-links a {
             margin: 0 10px;
             color: white;
             text-decoration: none;
+            font-size: 1em;
         }
 
         /* Responsive Design */
@@ -232,15 +197,35 @@
             .product-gallery {
                 grid-template-columns: 1fr 1fr;
             }
+
+            header h1 {
+                font-size: 3em;
+            }
+
+            header h2 {
+                font-size: 1.5em;
+            }
+
+            #about h2 {
+                font-size: 2.5em;
+            }
         }
 
         @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            header h2 {
+                font-size: 1.2em;
+            }
+
             .product-gallery {
                 grid-template-columns: 1fr;
             }
 
-            header {
-                padding: 50px 20px; /* Adjusted for smaller screens */
+            #about p {
+                font-size: 1.2em;
             }
         }
     </style>
@@ -258,60 +243,41 @@
     <!-- Hero Section -->
     <header>
         <h1>Needle & Threads</h1>
-        <h2>Find your Spot</h2>
-        <p>Explore our wide range of premium clothings only for the Triumphants</p>
+        <h2>Luxury Clothing for the Modern Triumph</h2>
+        <p>Explore our exclusive collection of premium t-shirts that make a statement in every victory.</p>
     </header>
 
     <!-- About Us Section -->
     <section id="about">
         <h2>About Us</h2>
-        <p>At Needle & Threads, we believe that true triumph comes from within. Our clothing is designed for those who not only strive for success but also celebrate every victory along the way. We offer premium quality t-shirts that embody strength, confidence, and the spirit of a true triumph.</p>
-    </section>
-
-    <!-- Join the Club Section -->
-    <section id="join-club">
-        <h2>Join the club!</h2>
-        <p>Sign up to receive updates and access to exclusive deals!</p>
-        <form action="#" method="post">
-            <input type="email" placeholder="Enter your email address" required>
-            <input type="submit" value="Subscribe">
-        </form>
+        <p>At Needle & Threads, we believe that true triumph comes from within. Our collection reflects a passion for success, resilience, and a commitment to luxury. Each piece is crafted with attention to detail, ensuring you not only look good but feel unstoppable.</p>
     </section>
 
     <!-- Product Gallery -->
     <div class="product-gallery" id="products">
         <div class="product-item">
-            <img src="https://via.placeholder.com/300x300" alt="T-shirt 1">
-            <h3>T-shirt 1</h3>
+            <img src="https://via.placeholder.com/600x600" alt="Product 1">
+            <h3>Premium T-Shirt</h3>
             <a href="#" class="btn">Coming Soon</a>
         </div>
         <div class="product-item">
-            <img src="https://via.placeholder.com/300x300" alt="T-shirt 2">
-            <h3>T-shirt 2</h3>
+            <img src="https://via.placeholder.com/600x600" alt="Product 2">
+            <h3>Luxury Polo</h3>
             <a href="#" class="btn">Coming Soon</a>
         </div>
         <div class="product-item">
-            <img src="https://via.placeholder.com/300x300" alt="T-shirt 3">
-            <h3>T-shirt 3</h3>
+            <img src="https://via.placeholder.com/600x600" alt="Product 3">
+            <h3>Classic Tee</h3>
             <a href="#" class="btn">Coming Soon</a>
         </div>
     </div>
-
-    <!-- FAQ Section -->
-    <section id="faq">
-        <h2>Frequently Asked Questions</h2>
-        <p><strong>Q: What sizes do you offer?</strong></p>
-        <p>A: We offer sizes from Small to XXL. Please refer to our size chart for more details.</p>
-        <p><strong>Q: When will the products be available?</strong></p>
-        <p>A: Our products are launching soon! Stay tuned for updates.</p>
-    </section>
 
     <!-- Footer Section -->
     <footer>
         <div class="social">
             <a href="#">Instagram</a>
             <a href="#">Facebook</a>
-            <a href="#">X (Twitter)</a>
+            <a href="#">Twitter</a>
         </div>
         <div class="footer-links">
             <a href="#">About Us</a>
@@ -319,17 +285,13 @@
             <a href="#">Contact Us</a>
             <a href="#">Size Chart</a>
             <a href="#">FAQs</a>
-            <a href="#">Rewards</a>
             <a href="#">Shipping Policy</a>
-            <a href="#">Returns and Exchanges Policy</a>
+            <a href="#">Returns & Exchanges</a>
             <a href="#">Privacy Policy</a>
             <a href="#">T&Cs</a>
         </div>
-        <p>&copy; 2025 Needle and Threads. All rights reserved.</p>
+        <p>&copy; 2025 Needle & Threads. All rights reserved.</p>
     </footer>
 
 </body>
 </html>
-
-
-
