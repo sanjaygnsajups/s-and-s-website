@@ -1,94 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;
-    background-color: #fafafa;
-    color: #333;
-}
+    <meta charset="UTF-8">
+    <title>Needle & Threads</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #fafafa;
+            color: #333;
+        }
 
-nav {
-    width: 100%;
-    background-color: #222;
-    color: white;
-    padding: 15px 30px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box; /* Added box-sizing */
-    top: 0;
-    width: 100%;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.1em;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #FFD700;
-}
-
-nav {
-    width: 100%;
-    background-color: #222;
-    color: white;
-    padding: 15px 30px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.1em;
-    transition: color 0.3s ease;
-}
-
-nav a:hover {
-    color: #FFD700;
-}
-
-    background-color: #222;
-    color: white;
-    padding: 30px 20px;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-footer a {
-    color: white;
-    margin: 0 8px;
-    text-decoration: none;
-    font-size: 0.9em;
-}
-
-footer a:hover {
-    color: #FFD700;
-}
-
-/* Ensure there is a minimum height for content above footer */
-section {
-    padding: 60px 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-    min-height: 100vh; /* This will ensure the content takes up at least the full screen height */
-}
-        
         nav {
             width: 100%;
             background-color: #222;
@@ -100,7 +23,7 @@ section {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            box-sizing: border-box;
         }
 
         nav a {
@@ -116,18 +39,18 @@ section {
         }
 
         header {
-    background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
-    color: white;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    padding: 20px;
-    text-align: center;
-    margin-top: 70px; /* Added margin-top to prevent overlap with fixed navbar */
-}
+            background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
+            color: white;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            padding: 20px;
+            text-align: center;
+            margin-top: 70px;
+        }
 
         header h1 {
             font-size: 3.5em;
@@ -150,6 +73,7 @@ section {
             padding: 60px 20px;
             max-width: 1100px;
             margin: 0 auto;
+            min-height: 100vh;
         }
 
         #about h2, #join-club h2, #faq h2 {
@@ -260,87 +184,86 @@ section {
         footer a:hover {
             color: #FFD700;
         }
-
     </style>
 </head>
 <body>
 
-    <nav>
-        <div><strong>Needle & Threads</strong></div>
-        <div>
-            <a href="#">Home</a>
-            <a href="#about">About</a>
-            <a href="#products">Shop</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+<nav>
+    <div><strong>Needle & Threads</strong></div>
+    <div>
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#products">Shop</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-    <header>
-        <h1>Needle & Threads</h1>
-        <h2>Find Your Spot</h2>
-        <p>Explore our range of premium polos — designed for those who triumph, every day.</p>
-    </header>
+<header>
+    <h1>Needle & Threads</h1>
+    <h2>Find Your Spot</h2>
+    <p>Explore our range of premium polos — designed for those who triumph, every day.</p>
+</header>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>At Needle & Threads, we don't just make apparel. We stitch ambition into every thread. Our designs reflect confidence, quality, and an attitude that stands out from the crowd. Welcome to your journey of becoming a Triumphant.</p>
-    </section>
+<section id="about">
+    <h2>About Us</h2>
+    <p>At Needle & Threads, we don't just make apparel. We stitch ambition into every thread. Our designs reflect confidence, quality, and an attitude that stands out from the crowd. Welcome to your journey of becoming a Triumphant.</p>
+</section>
 
-    <section id="join-club">
-        <h2>Join the Club!</h2>
-        <p>Sign up to receive updates and early access to exclusive deals.</p>
-        <form action="#" method="post">
-            <input type="email" placeholder="Enter your email address" required>
-            <input type="submit" value="Subscribe">
-        </form>
-    </section>
+<section id="join-club">
+    <h2>Join the Club!</h2>
+    <p>Sign up to receive updates and early access to exclusive deals.</p>
+    <form action="#" method="post">
+        <input type="email" placeholder="Enter your email address" required>
+        <input type="submit" value="Subscribe">
+    </form>
+</section>
 
-    <section id="products" class="product-gallery">
-        <div class="product-item">
-            <img src="https://images.unsplash.com/photo-1600185365483-26d7c3c0d8f2" alt="Classic White Tee">
-            <h3>Classic White Tee</h3>
-            <a href="#" class="btn">Coming Soon</a>
-        </div>
-        <div class="product-item">
-            <img src="https://images.unsplash.com/photo-1520975918319-6c2a1f1f1c9f" alt="Urban Black Tee">
-            <h3>Urban Black Tee</h3>
-            <a href="#" class="btn">Coming Soon</a>
-        </div>
-        <div class="product-item">
-            <img src="https://images.unsplash.com/photo-1542068829-1115f7259450" alt="Minimalist Grey Tee">
-            <h3>Minimalist Grey Tee</h3>
-            <a href="#" class="btn">Coming Soon</a>
-        </div>
-    </section>
+<section id="products" class="product-gallery">
+    <div class="product-item">
+        <img src="https://images.unsplash.com/photo-1600185365483-26d7c3c0d8f2" alt="Classic White Tee">
+        <h3>Classic White Tee</h3>
+        <a href="#" class="btn">Coming Soon</a>
+    </div>
+    <div class="product-item">
+        <img src="https://images.unsplash.com/photo-1520975918319-6c2a1f1f1c9f" alt="Urban Black Tee">
+        <h3>Urban Black Tee</h3>
+        <a href="#" class="btn">Coming Soon</a>
+    </div>
+    <div class="product-item">
+        <img src="https://images.unsplash.com/photo-1542068829-1115f7259450" alt="Minimalist Grey Tee">
+        <h3>Minimalist Grey Tee</h3>
+        <a href="#" class="btn">Coming Soon</a>
+    </div>
+</section>
 
-    <section id="faq">
-        <h2>Frequently Asked Questions</h2>
-        <p><strong>Q: What sizes do you offer?</strong></p>
-        <p>A: We offer sizes from Small to XXL. Please refer to our size chart for accurate fit guidance.</p>
-        <p><strong>Q: When will products be available?</strong></p>
-        <p>A: Our exclusive line launches soon! Subscribe to get notified first.</p>
-    </section>
+<section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Q: What sizes do you offer?</strong></p>
+    <p>A: We offer sizes from Small to XXL. Please refer to our size chart for accurate fit guidance.</p>
+    <p><strong>Q: When will products be available?</strong></p>
+    <p>A: Our exclusive line launches soon! Subscribe to get notified first.</p>
+</section>
 
-    <footer id="contact">
-        <div>
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">X (Twitter)</a>
-        </div>
-        <div style="margin-top: 10px;">
-            <a href="#">About Us</a> |
-            <a href="#">My Account</a> |
-            <a href="#">Contact Us</a> |
-            <a href="#">Size Chart</a> |
-            <a href="#">FAQs</a> |
-            <a href="#">Rewards</a> |
-            <a href="#">Shipping Policy</a> |
-            <a href="#">Returns Policy</a> |
-            <a href="#">Privacy Policy</a> |
-            <a href="#">T&Cs</a>
-        </div>
-        <p style="margin-top: 15px;">&copy; 2025 Needle & Threads. All rights reserved.</p>
-    </footer>
+<footer id="contact">
+    <div>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">X (Twitter)</a>
+    </div>
+    <div style="margin-top: 10px;">
+        <a href="#">About Us</a> |
+        <a href="#">My Account</a> |
+        <a href="#">Contact Us</a> |
+        <a href="#">Size Chart</a> |
+        <a href="#">FAQs</a> |
+        <a href="#">Rewards</a> |
+        <a href="#">Shipping Policy</a> |
+        <a href="#">Returns Policy</a> |
+        <a href="#">Privacy Policy</a> |
+        <a href="#">T&Cs</a>
+    </div>
+    <p style="margin-top: 15px;">&copy; 2025 Needle & Threads. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
