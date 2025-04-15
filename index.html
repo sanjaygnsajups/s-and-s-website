@@ -15,58 +15,165 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             text-align: center;
         }
+
         h1 {
             font-size: 3em;
-            margin: 0;
+            margin: 20px 0;
             color: #222;
         }
+
         h2 {
             margin: 0;
             color: #555;
         }
+
         p {
             font-size: 1.2em;
             margin: 20px 0;
             color: #444;
         }
-        .social {
-            margin-top: 30px;
+
+        /* Hero Section */
+        header {
+            width: 100%;
+            padding: 50px 20px;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
         }
-        .social a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #222;
+
+        header h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+
+        header h2 {
             font-size: 1.5em;
+            margin: 10px 0;
         }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1em;
+
+        /* Product Gallery */
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .product-item {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+
+        .product-item:hover {
+            transform: scale(1.05);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-item h3 {
+            font-size: 1.5em;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .product-item .btn {
             background-color: #222;
             color: #fff;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             transition: background 0.3s ease;
         }
-        .btn:hover {
+
+        .product-item .btn:hover {
             background-color: #444;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer .social a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.5em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-gallery {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>S & S</h1>
-    <h2>For the Triumphant</h2>
-    <p>Explore the wide ranges for clothing only for triumphants</p>
-    <a href="#" class="btn">Shop Now</a>
 
-    <div class="social">
-        <a href="#" target="_blank">Instagram</a>
-        <a href="#" target="_blank">Facebook</a>
-        <a href="#" target="_blank">X (Twitter)</a>
+    <!-- Hero Section -->
+    <header>
+        <h1>S & S</h1>
+        <h2>For The Triumphant</h2>
+        <p>Expore the wide ranges of premium clothing only for the triumphants</p>
+    </header>
+
+    <!-- Product Gallery -->
+    <div class="product-gallery">
+        <!-- Product 1 -->
+        <div class="product-item">
+            <img src="https://via.placeholder.com/300x300" alt="T-shirt 1">
+            <h3>T-shirt 1</h3>
+            <a href="#" class="btn">Coming Soon</a>
+        </div>
+        <!-- Product 2 -->
+        <div class="product-item">
+            <img src="https://via.placeholder.com/300x300" alt="T-shirt 2">
+            <h3>T-shirt 2</h3>
+            <a href="#" class="btn">Coming Soon</a>
+        </div>
+        <!-- Product 3 -->
+        <div class="product-item">
+            <img src="https://via.placeholder.com/300x300" alt="T-shirt 3">
+            <h3>T-shirt 3</h3>
+            <a href="#" class="btn">Coming Soon</a>
+        </div>
     </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="social">
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">X (Twitter)</a>
+        </div>
+    </footer>
+
 </body>
 </html>
+
