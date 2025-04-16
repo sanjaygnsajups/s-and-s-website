@@ -1,96 +1,38 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    .luxury-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    background: white;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.luxury-logo {
-    height: 50px;
-    margin-right: 10px;
-}
-
-.luxury-brand {
-    font-size: 20px;
-    letter-spacing: 3px;
-    font-weight: 600;
-    color: black;
-}
-
-.luxury-nav {
-    margin-top: 10px;
-}
-
-.luxury-nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: black;
-    font-size: 14px;
-    letter-spacing: 1px;
-    font-weight: 500;
-    position: relative;
-}
-
-.luxury-nav a::after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 1px;
-    background: black;
-    transition: width 0.3s ease;
-    margin: auto;
-}
-
-.luxury-nav a:hover::after {
-    width: 100%;
-}
-
-  </style>
-</head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Needle & Threads - Crafted for the Stylish</title>
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Lato', sans-serif;
-            background: #fafafa;
+            background-color: #fafafa;
             color: #333;
             scroll-behavior: smooth;
         }
+
         nav {
             background: linear-gradient(90deg, #111, #222);
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 12px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
             flex-wrap: wrap;
         }
+
         nav a {
             color: white;
             padding: 14px 20px;
@@ -99,6 +41,7 @@
             position: relative;
             transition: all 0.3s ease;
         }
+
         nav a::after {
             content: '';
             position: absolute;
@@ -110,62 +53,73 @@
             background: #FFD700;
             transition: width 0.3s ease;
         }
+
         nav a:hover::after {
             width: 100%;
             left: 0;
-            background: #FFD700;
         }
-        nav a:hover, nav .dropdown:hover > a {
+
+        nav a:hover {
             color: #FFD700;
         }
+
         .dropdown {
             position: relative;
         }
+
         .dropdown-content {
             display: none;
             position: absolute;
-            background: rgba(34,34,34,0.98);
+            background: rgba(34, 34, 34, 0.98);
             min-width: 220px;
             border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             transform: translateY(10px);
             opacity: 0;
             transition: all 0.3s ease;
             max-height: 70vh;
             overflow-y: auto;
         }
+
         .dropdown-content ul {
             list-style: none;
         }
+
         .dropdown-content ul li {
             padding: 10px 15px;
             cursor: pointer;
             color: white;
             transition: background 0.3s ease, color 0.3s ease;
         }
+
         .dropdown-content ul li:hover {
             background: #FFD700;
             color: #111;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
             transform: translateY(0);
             opacity: 1;
         }
+
         .dropdown-content img {
             width: 50px;
             height: 50px;
             margin-right: 10px;
         }
+
         @media (max-width: 768px) {
             nav {
                 justify-content: space-around;
             }
+
             nav a {
                 flex: 1 1 100%;
                 text-align: center;
                 border-bottom: 1px solid #333;
             }
+
             .dropdown-content {
                 position: static;
                 transform: translateY(0);
@@ -173,15 +127,18 @@
                 display: none;
                 max-height: 60vh;
             }
+
             .dropdown:hover .dropdown-content {
                 display: block;
             }
+
             .menu-toggle {
                 display: block;
                 font-size: 30px;
                 cursor: pointer;
             }
         }
+
         header {
             background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
             height: 90vh;
@@ -190,41 +147,49 @@
             align-items: center;
             text-align: center;
             color: white;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             position: relative;
         }
+
         .header-logo {
             position: absolute;
             top: 20px;
             left: 20px;
             z-index: 2;
         }
+
         .header-logo img {
             max-width: 120px;
         }
+
         .header-content {
             z-index: 2;
         }
+
         header h1 {
             font-size: 3.5em;
             margin: 0;
         }
+
         header h2 {
             font-size: 1.8em;
             margin: 15px 0;
             color: #FFD700;
         }
+
         header p {
             font-size: 1.2em;
             max-width: 600px;
             margin: 20px auto 0;
         }
+
         footer {
             background: #222;
             color: white;
             text-align: center;
             padding: 20px 10px;
         }
+
         footer a {
             display: inline-block;
             color: white;
@@ -233,24 +198,30 @@
             font-size: 1.1em;
             transition: color 0.3s ease;
         }
+
         footer a:hover {
             color: #FFD700;
         }
+
         .social-icons {
             display: flex;
             justify-content: center;
             margin-top: 15px;
         }
+
         .social-icons a {
             margin: 0 15px;
         }
+
         .social-icons i {
             font-size: 1.5em;
             transition: color 0.3s ease;
         }
+
         .social-icons i:hover {
             color: #FFD700;
         }
+
         .footer-container {
             width: 100%;
             max-width: 1200px;
@@ -259,6 +230,7 @@
             flex-direction: column;
             align-items: center;
         }
+
         .footer-links {
             display: flex;
             justify-content: space-between;
@@ -266,16 +238,19 @@
             flex-wrap: wrap;
             margin-bottom: 30px;
         }
+
         .footer-column {
             margin: 10px;
             flex: 1;
             min-width: 200px;
         }
+
         .footer-column h3 {
             font-size: 1.2em;
             margin-bottom: 10px;
             color: #FFD700;
         }
+
         .footer-column a {
             display: block;
             color: white;
@@ -283,9 +258,11 @@
             margin: 5px 0;
             transition: color 0.3s ease;
         }
+
         .footer-column a:hover {
             color: #FFD700;
         }
+
         .footer-column .join-btn {
             display: inline-block;
             background: #FFD700;
@@ -295,46 +272,47 @@
             text-decoration: none;
             margin-top: 10px;
         }
+
         .footer-column .join-btn:hover {
             background: #e0a800;
         }
+
         .footer-bottom {
             text-align: center;
             margin-top: 20px;
             font-size: 0.8em;
         }
+
         .footer-bottom p {
             margin: 0;
         }
     </style>
 </head>
+
 <body>
 
-<header class="luxury-header">
-    <div class="logo-container">
-        <img src="logo-url.png" alt="Needle & Threads Logo" class="luxury-logo">
-        <span class="luxury-brand">NEEDLE & THREADS</span>
+<header>
+    <div class="header-logo">
+        <img src="logo-url.png" alt="Needle & Threads Logo">
     </div>
-    <nav class="luxury-nav">
-        <a href="#">Home</a>
-        <a href="#">Men</a>
-        <a href="#">Women</a>
-        <a href="#">Kids</a>
-        <a href="#">Brands</a>
-        <a href="#about">About Us</a>
-        <a href="#policies">Policies</a>
-        <a href="#">Blog</a>
-    </nav>
-</header>
 
-<section class="hero">
     <div class="header-content">
         <h1>Needle & Threads</h1>
         <h2>Find Your Spot</h2>
         <p>Explore our range of premium apparel — designed for those who triumph, every day.</p>
     </div>
-</section>
+</header>
 
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Men</a>
+    <a href="#">Women</a>
+    <a href="#">Kids</a>
+    <a href="#">Brands</a>
+    <a href="#about">About Us</a>
+    <a href="#policies">Policies</a>
+    <a href="#">Blog</a>
+</nav>
 
 <footer>
     <div class="footer-container">
@@ -371,6 +349,7 @@
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom">
             <p>&copy; 2025 Needle & Threads. All rights reserved.</p>
         </div>
