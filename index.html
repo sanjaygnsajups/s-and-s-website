@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Needle & Threads - Navigation</title>
+    <title>Needle & Threads - Crafted for the Stylish</title>
     <style>
         * {
             margin: 0;
@@ -12,9 +12,10 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Arial', sans-serif;
-            background: #f7f7f7;
+            font-family: 'Lato', sans-serif;
+            background: #fafafa;
             color: #333;
+            scroll-behavior: smooth;
         }
         nav {
             background: linear-gradient(90deg, #111, #222);
@@ -26,6 +27,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
         }
         nav a {
             color: white;
@@ -45,7 +47,6 @@
             right: 0;
             background: #FFD700;
             transition: width 0.3s ease;
-            -webkit-transition: width 0.3s ease;
         }
         nav a:hover::after {
             width: 100%;
@@ -57,19 +58,19 @@
         }
         .dropdown {
             position: relative;
-            transition: all 0.3s ease;
         }
         .dropdown-content {
             display: none;
             position: absolute;
-            background: rgba(34,34,34,0.95);
+            background: rgba(34,34,34,0.98);
             min-width: 220px;
             border-radius: 8px;
-            overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             transform: translateY(10px);
             opacity: 0;
             transition: all 0.3s ease;
+            max-height: 70vh;
+            overflow-y: auto;
         }
         .dropdown-content ul {
             list-style: none;
@@ -77,8 +78,8 @@
         .dropdown-content ul li {
             padding: 10px 15px;
             cursor: pointer;
-            transition: background 0.3s ease;
             color: white;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         .dropdown-content ul li:hover {
             background: #FFD700;
@@ -91,7 +92,7 @@
         }
         @media (max-width: 768px) {
             nav {
-                flex-wrap: wrap;
+                justify-content: space-around;
             }
             nav a {
                 flex: 1 1 100%;
@@ -103,10 +104,58 @@
                 transform: translateY(0);
                 opacity: 1;
                 display: none;
+                max-height: 60vh;
             }
             .dropdown:hover .dropdown-content {
                 display: block;
             }
+        }
+        header {
+            background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            animation: fadeIn 2s ease forwards;
+        }
+        header h1 {
+            font-size: 3.5em;
+            margin: 0;
+        }
+        header h2 {
+            font-size: 1.8em;
+            margin: 15px 0;
+            color: #FFD700;
+        }
+        header p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+        footer a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin: 5px 0;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #FFD700;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -114,42 +163,51 @@
 
 <nav>
     <a href="#">Home</a>
-
     <div class="dropdown">
         <a href="#">Men</a>
         <div class="dropdown-content">
-            <ul>
-                <li>Streetwear</li><li>Oversized T-Shirts</li><li>Regular T-Shirts</li><li>Printed Shirts</li><li>Sweatshirts</li><li>Jeans</li><li>Co-ords</li><li>Casualwear</li><li>T-shirts</li><li>Shirts</li><li>Sweatshirts</li><li>Jeans</li><li>Chinos</li><li>Shorts</li><li>Blazers</li><li>Athleisure</li><li>T-shirts</li><li>Joggers</li><li>Jackets</li><li>Shorts</li><li>Tracksuits</li><li>Loungewear</li><li>Trunks</li><li>Boxers</li><li>Workwear</li><li>Shirts</li><li>Trousers</li><li>Footwear</li><li>Sneakers</li><li>Flip Flops</li><li>Casual Shoes</li><li>Loafers</li><li>Sandals</li><li>Formal Shoes</li><li>Accessories</li><li>Backpacks</li><li>Belts</li><li>Jewellery</li><li>Caps</li><li>Socks</li><li>Sustainable</li><li>Topwear</li><li>Bottomwear</li><li>Footwear</li><li>Accessories</li>
-            </ul>
+            <ul><li>Streetwear</li><li>Oversized T-Shirts</li><li>Regular T-Shirts</li><li>Printed Shirts</li><li>Sweatshirts</li><li>Jeans</li><li>Co-ords</li><li>Casualwear</li><li>T-shirts</li><li>Shirts</li><li>Sweatshirts</li><li>Jeans</li><li>Chinos</li><li>Shorts</li><li>Blazers</li><li>Athleisure</li><li>T-shirts</li><li>Joggers</li><li>Jackets</li><li>Shorts</li><li>Tracksuits</li><li>Loungewear</li><li>Trunks</li><li>Boxers</li><li>Workwear</li><li>Shirts</li><li>Trousers</li><li>Footwear</li><li>Sneakers</li><li>Flip Flops</li><li>Casual Shoes</li><li>Loafers</li><li>Sandals</li><li>Formal Shoes</li><li>Accessories</li><li>Backpacks</li><li>Belts</li><li>Jewellery</li><li>Caps</li><li>Socks</li><li>Sustainable</li><li>Topwear</li><li>Bottomwear</li><li>Footwear</li><li>Accessories</li></ul>
         </div>
     </div>
-
     <div class="dropdown">
         <a href="#">Women</a>
         <div class="dropdown-content">
-            <ul>
-                <li>Streetwear</li><li>Oversized T-Shirts</li><li>Regular T-Shirts</li><li>Crop Tops</li><li>Sweatshirts</li><li>Oversized Shirts</li><li>Co-ord Sets</li><li>Dresses</li><li>Jeans</li><li>Casualwear</li><li>T-Shirts</li><li>Tops</li><li>Dresses</li><li>Jeans</li><li>Joggers</li><li>Skirts</li><li>Athleisure</li><li>T-Shirts</li><li>Sports Bras</li><li>Tops</li><li>Shorts</li><li>Tights & Yoga Pants</li><li>Joggers</li><li>Loungewear</li><li>Pyjamas</li><li>Shorts</li><li>Workwear</li><li>Trousers</li><li>Blazers</li><li>Footwear</li><li>Sneakers</li><li>Heels</li><li>Flats</li><li>Boots</li><li>Sandals</li><li>Accessories</li><li>Jewellery</li><li>Bags</li><li>Wallets</li><li>Caps & Hats</li><li>Sustainable</li><li>Topwear</li><li>Bottomwear</li><li>Accessories</li>
-            </ul>
+            <ul><li>Streetwear</li><li>Oversized T-Shirts</li><li>Regular T-Shirts</li><li>Crop Tops</li><li>Sweatshirts</li><li>Oversized Shirts</li><li>Co-ord Sets</li><li>Dresses</li><li>Jeans</li><li>Casualwear</li><li>T-Shirts</li><li>Tops</li><li>Dresses</li><li>Jeans</li><li>Joggers</li><li>Skirts</li><li>Athleisure</li><li>T-Shirts</li><li>Sports Bras</li><li>Tops</li><li>Shorts</li><li>Tights & Yoga Pants</li><li>Joggers</li><li>Loungewear</li><li>Pyjamas</li><li>Shorts</li><li>Workwear</li><li>Trousers</li><li>Blazers</li><li>Footwear</li><li>Sneakers</li><li>Heels</li><li>Flats</li><li>Boots</li><li>Sandals</li><li>Accessories</li><li>Jewellery</li><li>Bags</li><li>Wallets</li><li>Caps & Hats</li><li>Sustainable</li><li>Topwear</li><li>Bottomwear</li><li>Accessories</li></ul>
         </div>
     </div>
-
     <div class="dropdown">
         <a href="#">Kids</a>
         <div class="dropdown-content">
-            <ul>
-                <li>Boys T-Shirts</li><li>Boys Shirts</li><li>Boys Jeans</li><li>Boys Trousers</li><li>Boys Shorts</li><li>Girls Dresses</li><li>Girls Tops</li><li>Girls Skirts</li><li>Girls T-Shirts</li><li>Girls Jeans</li><li>Girls Trousers</li><li>Girls Shorts</li><li>Accessories</li><li>Shoes</li>
-            </ul>
+            <ul><li>Boys T-Shirts</li><li>Boys Shirts</li><li>Boys Jeans</li><li>Boys Trousers</li><li>Boys Shorts</li><li>Girls Dresses</li><li>Girls Tops</li><li>Girls Skirts</li><li>Girls T-Shirts</li><li>Girls Jeans</li><li>Girls Trousers</li><li>Girls Shorts</li><li>Accessories</li><li>Shoes</li></ul>
         </div>
     </div>
-
     <a href="#">Brands</a>
-    <a href="#">About Us</a>
-    <a href="#">Policies</a>
+    <a href="#about">About Us</a>
+    <a href="#policies">Policies</a>
     <a href="#">Blog</a>
 </nav>
 
+<header>
+    <h1>Needle & Threads</h1>
+    <h2>Find Your Spot</h2>
+    <p>Explore our range of premium apparel — designed for those who triumph, every day.</p>
+</header>
+
+<footer>
+    <p>&copy; 2025 Needle & Threads. All rights reserved.</p>
+    <a href="#">Our Policies</a>
+    <a href="#">FAQs</a>
+    <a href="#">Return Policy</a>
+    <a href="#">Cancellation & Refund Policy</a>
+    <a href="#">Shipping Policy</a>
+    <a href="#">Promotion Terms & Conditions</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms & Conditions</a>
+    <a href="#">Caution Notice</a>
+    <a href="#">Investor Desk</a>
+</footer>
+
 </body>
 </html>
-
 
 
