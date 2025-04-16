@@ -19,13 +19,14 @@
         nav {
             background: linear-gradient(90deg, #111, #222);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 12px 20px;
+            padding: 12px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
         }
         nav a {
             color: white;
@@ -95,7 +96,7 @@
         }
         @media (max-width: 768px) {
             nav {
-                flex-wrap: wrap;
+                justify-content: space-around;
             }
             nav a {
                 flex: 1 1 100%;
@@ -127,8 +128,19 @@
             text-align: center;
             color: white;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            animation: fadeIn 2s ease forwards, zoomIn 5s ease infinite;
             position: relative;
+        }
+        .header-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+        .header-logo img {
+            max-width: 120px;
+        }
+        .header-content {
+            z-index: 2;
         }
         header h1 {
             font-size: 3.5em;
@@ -144,20 +156,37 @@
             max-width: 600px;
             margin: 20px auto 0;
         }
-        .header-logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 2;
-        }
-        .header-logo img {
-            max-width: 120px;
-        }
         footer {
             background: #222;
             color: white;
-            padding: 40px 10px;
-            font-size: 0.9em;
+            text-align: center;
+            padding: 20px 10px;
+        }
+        footer a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #FFD700;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .social-icons a {
+            margin: 0 15px;
+        }
+        .social-icons i {
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        .social-icons i:hover {
+            color: #FFD700;
         }
         .footer-container {
             width: 100%;
@@ -177,7 +206,7 @@
         .footer-column {
             margin: 10px;
             flex: 1;
-            min-width: 250px;
+            min-width: 200px;
         }
         .footer-column h3 {
             font-size: 1.2em;
@@ -206,21 +235,6 @@
         .footer-column .join-btn:hover {
             background: #e0a800;
         }
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .social-icons a {
-            margin: 0 15px;
-        }
-        .social-icons i {
-            font-size: 1.5em;
-            transition: color 0.3s ease;
-        }
-        .social-icons i:hover {
-            color: #FFD700;
-        }
         .footer-bottom {
             text-align: center;
             margin-top: 20px;
@@ -229,22 +243,11 @@
         .footer-bottom p {
             margin: 0;
         }
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes zoomIn {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
-        }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="header-logo">
-        <img src="logo-url.png" alt="Needle & Threads Logo" />
-    </div>
     <a href="#">Home</a>
     <div class="dropdown">
         <a href="#">Men</a>
@@ -332,6 +335,8 @@
         </div>
     </div>
 </footer>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 </body>
 </html>
