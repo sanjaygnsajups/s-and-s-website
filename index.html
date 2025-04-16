@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -132,6 +131,21 @@
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
             animation: fadeIn 2s ease forwards, zoomIn 5s ease infinite;
         }
+        .header-content {
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+        .header-logo {
+            margin-right: 20px;
+        }
+        .header-logo img {
+            max-width: 120px;
+        }
         header h1 {
             font-size: 3.5em;
             margin: 0;
@@ -232,17 +246,16 @@
 
 <header>
     <div class="header-content">
-        <h1>Needle & Threads</h1>
-        <h2>Find Your Spot</h2>
-        <p>Explore our range of premium apparel — designed for those who triumph, every day.</p>
-    </div>
-    <div class="header-logo">
-        <img src="logo-url.png" alt="Needle & Threads Logo" />
+        <div class="header-logo">
+            <img src="logo-url.png" alt="Needle & Threads Logo" />
+        </div>
+        <div>
+            <h1>Needle & Threads</h1>
+            <h2>Find Your Spot</h2>
+            <p>Explore our range of premium apparel — designed for those who triumph, every day.</p>
+        </div>
     </div>
 </header>
-
-<style>
-
 
 <footer>
     <div class="footer-container">
@@ -285,220 +298,6 @@
     </div>
 </footer>
 
-    <style>
-    footer {
-        background: #222;
-        color: white;
-        padding: 40px 10px;
-        font-size: 0.9em;
-    }
-
-    .footer-container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-links {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-
-    .footer-column {
-        margin: 10px;
-        flex: 1;
-        min-width: 200px;
-    }
-
-    .footer-column h3 {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-        color: #FFD700;
-    }
-
-    .footer-column a {
-        display: block;
-        color: white;
-        text-decoration: none;
-        margin: 5px 0;
-        transition: color 0.3s ease;
-    }
-
-    .footer-column a:hover {
-        color: #FFD700;
-    }
-
-    .footer-column .join-btn {
-        display: inline-block;
-        background: #FFD700;
-        color: #222;
-        padding: 10px 20px;
-        border-radius: 5px;
-        text-decoration: none;
-        margin-top: 10px;
-    }
-
-    .footer-column .join-btn:hover {
-        background: #e0a800;
-    }
-
-    .social-icons {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .social-icons a {
-        margin: 0 15px;
-    }
-
-    .social-icons i {
-        font-size: 1.5em;
-        transition: color 0.3s ease;
-    }
-
-    .social-icons i:hover {
-        color: #FFD700;
-    }
-
-    .footer-bottom {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 0.8em;
-    }
-
-    .footer-bottom p {
-        margin: 0;
-    }
-
-    header {
-        position: relative;
-        background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
-        height: 90vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        color: white;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-    }
-
-    .header-content {
-        z-index: 2;
-    }
-
-    .header-logo {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 2;
-    }
-
-    .header-logo img {
-        max-width: 120px;
-    }
-
-    header h1 {
-        font-size: 3.5em;
-        margin: 0;
-    }
-
-    header h2 {
-        font-size: 1.8em;
-        margin: 15px 0;
-        color: #FFD700;
-    }
-
-    header p {
-        font-size: 1.2em;
-        max-width: 600px;
-        margin: 20px auto 0;
-    }
-</style>
-    footer {
-        background: #222;
-        color: white;
-        padding: 40px 10px;
-        font-size: 0.9em;
-    }
-
-    .footer-container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-links {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-
-    .footer-column {
-        margin: 10px;
-        flex: 1;
-        min-width: 200px;
-    }
-
-    .footer-column h3 {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-        color: #FFD700;
-    }
-
-    .footer-column a {
-        display: block;
-        color: white;
-        text-decoration: none;
-        margin: 5px 0;
-        transition: color 0.3s ease;
-    }
-
-    .footer-column a:hover {
-        color: #FFD700;
-    }
-
-    .social-icons {
-        display: flex;
-        justify-content: center;
-        margin-top: 10px;
-    }
-
-    .social-icons a {
-        margin: 0 15px;
-    }
-
-    .social-icons i {
-        font-size: 1.5em;
-        transition: color 0.3s ease;
-    }
-
-    .social-icons i:hover {
-        color: #FFD700;
-    }
-
-    .footer-bottom {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 0.8em;
-    }
-
-    .footer-bottom p {
-        margin: 0;
-    }
-</style>
-    
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
