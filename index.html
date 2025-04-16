@@ -1,6 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+    .luxury-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.luxury-logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.luxury-brand {
+    font-size: 20px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: black;
+}
+
+.luxury-nav {
+    margin-top: 10px;
+}
+
+.luxury-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    position: relative;
+}
+
+.luxury-nav a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 1px;
+    background: black;
+    transition: width 0.3s ease;
+    margin: auto;
+}
+
+.luxury-nav a:hover::after {
+    width: 100%;
+}
+
+  </style>
+</head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Needle & Threads - Crafted for the Stylish</title>
