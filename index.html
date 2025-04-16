@@ -30,6 +30,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -45,6 +46,40 @@
             color: #FFD700;
         }
 
+        /* Centering the logo and company name */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .logo-container img {
+            max-width: 100px;
+            margin-right: 10px;
+        }
+
+        .logo-container h1 {
+            color: white;
+            font-size: 1.8em;
+            text-transform: uppercase;
+        }
+
+        /* Search bar */
+        .search-bar input {
+            padding: 8px 12px;
+            font-size: 1em;
+            border: none;
+            border-radius: 25px;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+        }
+
         /* Burger Menu Styles */
         .burger-menu {
             display: flex;
@@ -53,6 +88,7 @@
             width: 30px;
             height: 25px;
             cursor: pointer;
+            margin-left: 20px;
         }
 
         .burger-menu div {
@@ -169,51 +205,12 @@
                 width: auto;
                 gap: 15px;
             }
-        }
 
-        /* Header section styling */
-        header {
-            background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
-            height: 90vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        .header-logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 2;
-        }
-
-        .header-logo img {
-            max-width: 120px;
-        }
-
-        .header-content {
-            z-index: 2;
-        }
-
-        header h1 {
-            font-size: 3.5em;
-            margin: 0;
-        }
-
-        header h2 {
-            font-size: 1.8em;
-            margin: 15px 0;
-            color: #FFD700;
-        }
-
-        header p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin: 20px auto 0;
+            .menu-items a {
+                color: white;
+                font-size: 1em;
+                padding: 12px;
+            }
         }
 
         /* Footer Styles */
@@ -326,35 +323,45 @@
 <body>
 
 <header>
-    <div class="header-logo">
-        <img src="logo-url.png" alt="Needle & Threads Logo">
-    </div>
+    <nav>
+        <div class="logo-container">
+            <img src="logo-url.png" alt="Needle & Threads Logo">
+            <h1>Needle & Threads</h1>
+        </div>
 
-    <div class="header-content">
-        <h1>Needle & Threads</h1>
-        <h2>Find Your Spot</h2>
-        <p>Explore our range of premium apparel — designed for those who triumph, every day.</p>
-    </div>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+        </div>
+
+        <!-- Icons for Home, Wishlist, and Sign In -->
+        <div class="icon-links">
+            <a href="#"><img src="home-icon.png" alt="Home" width="25px"></a>
+            <a href="#"><img src="wishlist-icon.png" alt="Wishlist" width="25px"></a>
+            <a href="#"><img src="signin-icon.png" alt="Sign In" width="25px"></a>
+        </div>
+
+        <!-- Burger Menu -->
+        <div class="burger-menu" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Menu Items for Mobile -->
+        <div class="menu-items">
+            <a href="#">Home</a>
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Kids</a>
+            <a href="#">Accessories</a>
+            <a href="#">Brands</a>
+            <a href="#">Blog</a>
+        </div>
+    </nav>
 </header>
 
-<nav>
-    <div class="burger-menu" onclick="toggleMenu()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-
-    <div class="menu-items">
-        <a href="#">Home</a>
-        <a href="#">Men</a>
-        <a href="#">Women</a>
-        <a href="#">Kids</a>
-        <a href="#">Accessories</a>
-        <a href="#">Brands</a>
-        <a href="#">Blog</a>
-    </div>
-</nav>
-
+<!-- Footer Section -->
 <footer>
     <div class="footer-container">
         <div class="footer-links">
