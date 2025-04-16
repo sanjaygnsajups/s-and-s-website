@@ -19,14 +19,13 @@
         nav {
             background: linear-gradient(90deg, #111, #222);
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 12px 20px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
             position: sticky;
             top: 0;
             z-index: 100;
-            flex-wrap: wrap;
         }
         nav a {
             color: white;
@@ -96,7 +95,7 @@
         }
         @media (max-width: 768px) {
             nav {
-                justify-content: space-around;
+                flex-wrap: wrap;
             }
             nav a {
                 flex: 1 1 100%;
@@ -123,28 +122,13 @@
             background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
             height: 90vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
             animation: fadeIn 2s ease forwards, zoomIn 5s ease infinite;
-        }
-        .header-content {
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            position: absolute;
-            top: 10px;
-            left: 20px;
-        }
-        .header-logo {
-            margin-right: 20px;
-        }
-        .header-logo img {
-            max-width: 120px;
+            position: relative;
         }
         header h1 {
             font-size: 3.5em;
@@ -160,27 +144,72 @@
             max-width: 600px;
             margin: 20px auto 0;
         }
+        .header-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+        .header-logo img {
+            max-width: 120px;
+        }
         footer {
             background: #222;
             color: white;
-            text-align: center;
-            padding: 20px 10px;
+            padding: 40px 10px;
+            font-size: 0.9em;
         }
-        footer a {
-            display: inline-block;
+        .footer-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .footer-column {
+            margin: 10px;
+            flex: 1;
+            min-width: 250px;
+        }
+        .footer-column h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+        .footer-column a {
+            display: block;
             color: white;
             text-decoration: none;
-            margin: 10px;
-            font-size: 1.1em;
+            margin: 5px 0;
             transition: color 0.3s ease;
         }
-        footer a:hover {
+        .footer-column a:hover {
             color: #FFD700;
+        }
+        .footer-column .join-btn {
+            display: inline-block;
+            background: #FFD700;
+            color: #222;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .footer-column .join-btn:hover {
+            background: #e0a800;
         }
         .social-icons {
             display: flex;
             justify-content: center;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         .social-icons a {
             margin: 0 15px;
@@ -191,6 +220,14 @@
         }
         .social-icons i:hover {
             color: #FFD700;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+        .footer-bottom p {
+            margin: 0;
         }
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
@@ -205,6 +242,9 @@
 <body>
 
 <nav>
+    <div class="header-logo">
+        <img src="logo-url.png" alt="Needle & Threads Logo" />
+    </div>
     <a href="#">Home</a>
     <div class="dropdown">
         <a href="#">Men</a>
@@ -213,7 +253,6 @@
                 <li><img src="path-to-image.jpg" alt="Streetwear">Streetwear</li>
                 <li><img src="path-to-image.jpg" alt="Oversized T-Shirts">Oversized T-Shirts</li>
                 <li><img src="path-to-image.jpg" alt="Printed Shirts">Printed Shirts</li>
-                <!-- Add more categories with images as needed -->
             </ul>
         </div>
     </div>
@@ -224,7 +263,6 @@
                 <li><img src="path-to-image.jpg" alt="Streetwear">Streetwear</li>
                 <li><img src="path-to-image.jpg" alt="Crop Tops">Crop Tops</li>
                 <li><img src="path-to-image.jpg" alt="Dresses">Dresses</li>
-                <!-- Add more categories with images as needed -->
             </ul>
         </div>
     </div>
@@ -234,7 +272,6 @@
             <ul>
                 <li><img src="path-to-image.jpg" alt="Boys T-Shirts">Boys T-Shirts</li>
                 <li><img src="path-to-image.jpg" alt="Girls Dresses">Girls Dresses</li>
-                <!-- Add more categories with images as needed -->
             </ul>
         </div>
     </div>
@@ -246,14 +283,9 @@
 
 <header>
     <div class="header-content">
-        <div class="header-logo">
-            <img src="logo-url.png" alt="Needle & Threads Logo" />
-        </div>
-        <div>
-            <h1>Needle & Threads</h1>
-            <h2>Find Your Spot</h2>
-            <p>Explore our range of premium apparel — designed for those who triumph, every day.</p>
-        </div>
+        <h1>Needle & Threads</h1>
+        <h2>Find Your Spot</h2>
+        <p>Explore our range of premium apparel — designed for those who triumph, every day.</p>
     </div>
 </header>
 
@@ -298,6 +330,5 @@
     </div>
 </footer>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
