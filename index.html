@@ -90,6 +90,11 @@
             transform: translateY(0);
             opacity: 1;
         }
+        .dropdown-content img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
         @media (max-width: 768px) {
             nav {
                 justify-content: space-around;
@@ -109,6 +114,11 @@
             .dropdown:hover .dropdown-content {
                 display: block;
             }
+            .menu-toggle {
+                display: block;
+                font-size: 30px;
+                cursor: pointer;
+            }
         }
         header {
             background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
@@ -120,7 +130,7 @@
             text-align: center;
             color: white;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-            animation: fadeIn 2s ease forwards;
+            animation: fadeIn 2s ease forwards, zoomIn 5s ease infinite;
         }
         header h1 {
             font-size: 3.5em;
@@ -143,19 +153,38 @@
             padding: 20px 10px;
         }
         footer a {
-            display: block;
+            display: inline-block;
             color: white;
             text-decoration: none;
-            margin: 5px 0;
-            font-size: 0.9em;
+            margin: 10px;
+            font-size: 1.1em;
             transition: color 0.3s ease;
         }
         footer a:hover {
             color: #FFD700;
         }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .social-icons a {
+            margin: 0 15px;
+        }
+        .social-icons i {
+            font-size: 1.5em;
+            transition: color 0.3s ease;
+        }
+        .social-icons i:hover {
+            color: #FFD700;
+        }
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
         }
     </style>
 </head>
@@ -166,19 +195,33 @@
     <div class="dropdown">
         <a href="#">Men</a>
         <div class="dropdown-content">
-            <ul><li>Streetwear</li><li>Oversized T-Shirts</li><li>Regular T-Shirts</li><li>Printed Shirts</li><li>Sweatshirts</li><li>Jeans</li><li>Co-ords</li><li>Casualwear</li><li>T-shirts</li><li>Shirts</li><li>Sweatshirts</li><li>Jeans</li><li>Chinos</li><li>Shorts</li><li>Blazers</li><li>Athleisure</li><li>T-shirts</li><li>Joggers</li><li>Jackets</li><li>Shorts</li><li>Tracksuits</li><li>Loungewear</li><li>Trunks</li><li>Boxers</li><li>Workwear</li><li>Shirts</li><li>Trousers</li><li>Footwear</li><li>Sneakers</li><li>Flip Flops</li><li>Casual Shoes</li><li>Loafers</li><li>Sandals</li><li>Formal Shoes</li><li>Accessories</li><li>Backpacks</li><li>Belts</li><li>Jewellery</li><li>Caps</li><li>Socks</li><li>Sustainable</li><li>Topwear</li><li>Bottomwear</li><li>Footwear</li><li>Accessories</li></ul>
+            <ul>
+                <li><img src="path-to-image.jpg" alt="Streetwear">Streetwear</li>
+                <li><img src="path-to-image.jpg" alt="Oversized T-Shirts">Oversized T-Shirts</li>
+                <li><img src="path-to-image.jpg" alt="Printed Shirts">Printed Shirts</li>
+                <!-- Add more categories with images as needed -->
+            </ul>
         </div>
     </div>
     <div class="dropdown">
         <a href="#">Women</a>
         <div class="dropdown-content">
-            <ul><li>Streetwear</li><li>Oversized T-Shirts</li><li>Regular T-Shirts</li><li>Crop Tops</li><li>Sweatshirts</li><li>Oversized Shirts</li><li>Co-ord Sets</li><li>Dresses</li><li>Jeans</li><li>Casualwear</li><li>T-Shirts</li><li>Tops</li><li>Dresses</li><li>Jeans</li><li>Joggers</li><li>Skirts</li><li>Athleisure</li><li>T-Shirts</li><li>Sports Bras</li><li>Tops</li><li>Shorts</li><li>Tights & Yoga Pants</li><li>Joggers</li><li>Loungewear</li><li>Pyjamas</li><li>Shorts</li><li>Workwear</li><li>Trousers</li><li>Blazers</li><li>Footwear</li><li>Sneakers</li><li>Heels</li><li>Flats</li><li>Boots</li><li>Sandals</li><li>Accessories</li><li>Jewellery</li><li>Bags</li><li>Wallets</li><li>Caps & Hats</li><li>Sustainable</li><li>Topwear</li><li>Bottomwear</li><li>Accessories</li></ul>
+            <ul>
+                <li><img src="path-to-image.jpg" alt="Streetwear">Streetwear</li>
+                <li><img src="path-to-image.jpg" alt="Crop Tops">Crop Tops</li>
+                <li><img src="path-to-image.jpg" alt="Dresses">Dresses</li>
+                <!-- Add more categories with images as needed -->
+            </ul>
         </div>
     </div>
     <div class="dropdown">
         <a href="#">Kids</a>
         <div class="dropdown-content">
-            <ul><li>Boys T-Shirts</li><li>Boys Shirts</li><li>Boys Jeans</li><li>Boys Trousers</li><li>Boys Shorts</li><li>Girls Dresses</li><li>Girls Tops</li><li>Girls Skirts</li><li>Girls T-Shirts</li><li>Girls Jeans</li><li>Girls Trousers</li><li>Girls Shorts</li><li>Accessories</li><li>Shoes</li></ul>
+            <ul>
+                <li><img src="path-to-image.jpg" alt="Boys T-Shirts">Boys T-Shirts</li>
+                <li><img src="path-to-image.jpg" alt="Girls Dresses">Girls Dresses</li>
+                <!-- Add more categories with images as needed -->
+            </ul>
         </div>
     </div>
     <a href="#">Brands</a>
@@ -194,20 +237,119 @@
 </header>
 
 <footer>
-    <p>&copy; 2025 Needle & Threads. All rights reserved.</p>
-    <a href="#">Our Policies</a>
-    <a href="#">FAQs</a>
-    <a href="#">Return Policy</a>
-    <a href="#">Cancellation & Refund Policy</a>
-    <a href="#">Shipping Policy</a>
-    <a href="#">Promotion Terms & Conditions</a>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms & Conditions</a>
-    <a href="#">Caution Notice</a>
-    <a href="#">Investor Desk</a>
+  <div class="footer-container">
+        <div class="footer-links">
+            <div class="footer-column">
+                <h3>Company</h3>
+                <a href="#">About Us</a>
+                <a href="#">Policies</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Caution Notice</a>
+                <a href="#">Investor Desk</a>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="#">FAQs</a>
+                <a href="#">Return Policy</a>
+                <a href="#">Shipping Policy</a>
+                <a href="#">Cancellation & Refund Policy</a>
+                <a href="#">Promotion Terms & Conditions</a>
+            </div>
+            <div class="footer-column">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Needle & Threads. All rights reserved.</p>
+        </div>
+    </div>
 </footer>
+    <style>
+    footer {
+        background: #222;
+        color: white;
+        padding: 40px 10px;
+        font-size: 0.9em;
+    }
 
+    .footer-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+
+    .footer-column {
+        margin: 10px;
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .footer-column h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #FFD700;
+    }
+
+    .footer-column a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        margin: 5px 0;
+        transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover {
+        color: #FFD700;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .social-icons a {
+        margin: 0 15px;
+    }
+
+    .social-icons i {
+        font-size: 1.5em;
+        transition: color 0.3s ease;
+    }
+
+    .social-icons i:hover {
+        color: #FFD700;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.8em;
+    }
+
+    .footer-bottom p {
+        margin: 0;
+    }
+</style>
+    
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>
-
-
