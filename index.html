@@ -47,7 +47,7 @@
 
         /* Burger Menu Styles */
         .burger-menu {
-            display: none;
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 30px;
@@ -144,16 +144,29 @@
             display: flex;
         }
 
-        @media (max-width: 768px) {
-            nav {
-                justify-content: space-between;
+        /* Always show burger menu, even on large screens */
+        @media (min-width: 768px) {
+            .burger-menu {
+                display: flex;
             }
 
             .menu {
                 display: none;
             }
 
-            .burger-menu {
+            .active .menu-items {
+                display: none;
+            }
+
+            .menu-items {
+                display: flex;
+                gap: 15px;
+            }
+        }
+
+        /* Desktop menu (always visible) */
+        @media (min-width: 768px) {
+            .menu-items {
                 display: flex;
             }
         }
