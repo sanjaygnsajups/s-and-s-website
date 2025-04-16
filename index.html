@@ -105,18 +105,25 @@
             display: block;
         }
 
-        /* Show menu on mobile */
+        /* Menu for smaller screens (burger) */
         .menu-items {
             display: none;
             flex-direction: column;
             gap: 15px;
             padding: 20px;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(34, 34, 34, 0.98);
+            z-index: 100;
         }
 
         .menu-items a {
             color: white;
             text-decoration: none;
             font-size: 1.2em;
+            padding: 10px;
         }
 
         .menu-items a:hover {
@@ -144,33 +151,27 @@
             display: flex;
         }
 
-        /* Always show burger menu, even on large screens */
+        /* For larger screens, show the normal menu */
         @media (min-width: 768px) {
             .burger-menu {
-                display: flex;
+                display: none;
             }
 
             .menu {
-                display: none;
-            }
-
-            .active .menu-items {
-                display: none;
+                display: flex;
+                gap: 15px;
             }
 
             .menu-items {
                 display: flex;
+                position: static;
+                background: none;
+                width: auto;
                 gap: 15px;
             }
         }
 
-        /* Desktop menu (always visible) */
-        @media (min-width: 768px) {
-            .menu-items {
-                display: flex;
-            }
-        }
-
+        /* Header section styling */
         header {
             background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
             height: 90vh;
@@ -215,6 +216,7 @@
             margin: 20px auto 0;
         }
 
+        /* Footer Styles */
         footer {
             background: #222;
             color: white;
