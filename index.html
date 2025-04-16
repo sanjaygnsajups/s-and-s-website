@@ -26,8 +26,10 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 20px;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
             flex-wrap: wrap;
             height: 50px; /* Reduced navbar height */
@@ -225,7 +227,7 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             padding: 20px;
             text-align: center;
-            margin-top: 70px;
+            margin-top: 50px; /* Adjusted to match the navbar height */
         }
 
         header h1 {
@@ -355,40 +357,41 @@
 </head>
 <body>
 
+<nav>
+    <div class="logo-container">
+        <img src="logo-url.png" alt="Needle & Threads Logo">
+        <h1>Needle & Threads</h1>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Search...">
+    </div>
+
+    <!-- Icons for Home, Wishlist, and Sign In -->
+    <div class="icon-links">
+        <a href="#"><img src="home-icon.png" alt="Home" width="25px"></a>
+        <a href="#"><img src="wishlist-icon.png" alt="Wishlist" width="25px"></a>
+        <a href="#"><img src="signin-icon.png" alt="Sign In" width="25px"></a>
+    </div>
+
+    <!-- Burger Menu for Mobile -->
+    <div class="burger-menu" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- Dropdown Menu for Mobile -->
+    <div class="menu-items">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#shop">Shop</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
 <header>
-    <nav>
-        <div class="logo-container">
-            <img src="logo-url.png" alt="Needle & Threads Logo">
-            <h1>Needle & Threads</h1>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <input type="text" placeholder="Search...">
-        </div>
-
-        <!-- Icons for Home, Wishlist, and Sign In -->
-        <div class="icon-links">
-            <a href="#"><img src="home-icon.png" alt="Home" width="25px"></a>
-            <a href="#"><img src="wishlist-icon.png" alt="Wishlist" width="25px"></a>
-            <a href="#"><img src="signin-icon.png" alt="Sign In" width="25px"></a>
-        </div>
-
-        <!-- Burger Menu for Mobile -->
-        <div class="burger-menu" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-
-        <!-- Dropdown Menu for Mobile -->
-        <div class="menu-items">
-            <a href="#">Home</a>
-            <a href="#about">About</a>
-            <a href="#shop">Shop</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
     <div class="social-icons">
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
