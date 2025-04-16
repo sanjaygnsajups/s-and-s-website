@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Needle & Threads</title>
     <style>
         body {
@@ -11,6 +12,7 @@
             font-family: 'Lato', sans-serif;
             background-color: #fafafa;
             color: #333;
+            scroll-behavior: smooth; /* Smooth scrolling */
         }
 
         nav {
@@ -39,6 +41,46 @@
             color: #FFD700;
         }
 
+        .menu-toggle {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            padding: 10px 15px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #222;
+                position: absolute;
+                top: 60px;
+                left: 0;
+            }
+
+            .nav-links a {
+                padding: 15px;
+                text-align: center;
+                border-top: 1px solid #333;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
         header {
             background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
             color: white;
@@ -47,7 +89,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             padding: 20px;
             text-align: center;
             margin-top: 70px;
@@ -56,18 +98,21 @@
         header h1 {
             font-size: 3.5em;
             margin: 0;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         header h2 {
             font-size: 1.8em;
             margin: 15px 0;
             color: #f0e68c;
+            animation: fadeIn 2s ease-in-out;
         }
 
         header p {
             font-size: 1.2em;
             max-width: 600px;
             margin: 20px auto 0;
+            animation: fadeIn 2.5s ease-in-out;
         }
 
         section {
@@ -77,113 +122,28 @@
             min-height: 100vh;
         }
 
-        #about h2, #join-club h2, #faq h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        #about p, #join-club p, #faq p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            text-align: center;
-        }
-
-        #join-club form {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        #join-club input[type="email"] {
-            padding: 12px;
-            width: 250px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1em;
-        }
-
-        #join-club input[type="submit"] {
-            padding: 12px 25px;
-            background-color: #FFD700;
-            color: #222;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        #join-club input[type="submit"]:hover {
-            background-color: #222;
-            color: white;
-        }
-
-        .product-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
-        }
-
-        .product-item {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .product-item:hover {
-            transform: scale(1.05);
-        }
-
-        .product-item img {
-            width: 100%;
-            height: auto;
+        .footer-policies a {
             display: block;
-        }
-
-        .product-item h3 {
-            margin: 15px 0;
-            font-size: 1.4em;
-        }
-
-        .product-item .btn {
-            display: inline-block;
-            background-color: #222;
             color: white;
-            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            transition: background 0.3s ease;
-        }
-
-        .product-item .btn:hover {
-            background-color: #FFD700;
-            color: #222;
-        }
-
-        footer {
-            background-color: #222;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: white;
-            margin: 0 8px;
-            text-decoration: none;
+            margin: 5px 0;
             font-size: 0.9em;
+            transition: color 0.3s ease;
         }
 
-        footer a:hover {
+        .footer-policies a:hover {
             color: #FFD700;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -191,11 +151,39 @@
 
 <nav>
     <div><strong>Needle & Threads</strong></div>
-    <div>
+    <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    <div class="nav-links">
         <a href="#">Home</a>
         <a href="#about">About</a>
         <a href="#products">Shop</a>
         <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <a href="#">Men</a>
+            <div class="dropdown-content">
+                <a href="#">Streetwear</a>
+                <a href="#">Oversized T-Shirts</a>
+                <a href="#">Printed Shirts</a>
+                <!-- Add more categories as needed -->
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">Women</a>
+            <div class="dropdown-content">
+                <a href="#">Streetwear</a>
+                <a href="#">Crop Tops</a>
+                <a href="#">Dresses</a>
+                <!-- Add more categories as needed -->
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">Kids</a>
+            <div class="dropdown-content">
+                <a href="#">Streetwear</a>
+                <a href="#">T-Shirts</a>
+                <a href="#">Jeans</a>
+                <!-- Add more categories as needed -->
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -219,24 +207,6 @@
     </form>
 </section>
 
-<section id="products" class="product-gallery">
-    <div class="product-item">
-        <img src="https://images.unsplash.com/photo-1600185365483-26d7c3c0d8f2" alt="Classic White Tee">
-        <h3>Classic White Tee</h3>
-        <a href="#" class="btn">Coming Soon</a>
-    </div>
-    <div class="product-item">
-        <img src="https://images.unsplash.com/photo-1520975918319-6c2a1f1f1c9f" alt="Urban Black Tee">
-        <h3>Urban Black Tee</h3>
-        <a href="#" class="btn">Coming Soon</a>
-    </div>
-    <div class="product-item">
-        <img src="https://images.unsplash.com/photo-1542068829-1115f7259450" alt="Minimalist Grey Tee">
-        <h3>Minimalist Grey Tee</h3>
-        <a href="#" class="btn">Coming Soon</a>
-    </div>
-</section>
-
 <section id="faq">
     <h2>Frequently Asked Questions</h2>
     <p><strong>Q: What sizes do you offer?</strong></p>
@@ -245,26 +215,31 @@
     <p>A: Our exclusive line launches soon! Subscribe to get notified first.</p>
 </section>
 
-<footer id="contact">
-    <div>
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
-        <a href="#">X (Twitter)</a>
+<footer>
+    <p>&copy; 2025 Needle & Threads. All rights reserved.</p>
+
+    <div class="footer-policies">
+        <a href="#">Our Policies</a>
+        <a href="#">FAQs</a>
+        <a href="#">Return Policy</a>
+        <a href="#">Cancellation & Refund Policy</a>
+        <a href="#">Shipping Policy</a>
+        <a href="#">Promotion Terms & Condition</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Caution Notice</a>
+        <a href="#">Investor Desk</a>
     </div>
-    <div style="margin-top: 10px;">
-        <a href="#">About Us</a> |
-        <a href="#">My Account</a> |
-        <a href="#">Contact Us</a> |
-        <a href="#">Size Chart</a> |
-        <a href="#">FAQs</a> |
-        <a href="#">Rewards</a> |
-        <a href="#">Shipping Policy</a> |
-        <a href="#">Returns Policy</a> |
-        <a href="#">Privacy Policy</a> |
-        <a href="#">T&Cs</a>
-    </div>
-    <p style="margin-top: 15px;">&copy; 2025 Needle & Threads. All rights reserved.</p>
 </footer>
+
+<script>
+    function toggleMenu() {
+        const navLinks = document.querySelector('.nav-links');
+        navLinks.classList.toggle('active');
+    }
+</script>
 
 </body>
 </html>
+
+
