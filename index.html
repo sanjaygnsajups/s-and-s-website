@@ -64,6 +64,7 @@
             top: 30px;
             left: 0;
             white-space: nowrap;
+            font-size: 0.8em;
         }
 
         .nav-links li a:hover {
@@ -92,6 +93,7 @@
 
         .search-bar {
             display: inline-block;
+            margin: 0 20px;
         }
 
         .search-bar input {
@@ -100,6 +102,36 @@
             border-radius: 20px;
             outline: none;
             font-size: 1em;
+        }
+
+        .social-icons {
+            margin-left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.2em;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .social-icons a:hover::after {
+            content: attr(data-title);
+            position: absolute;
+            background: #222;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            top: 30px;
+            left: -10px;
+            white-space: nowrap;
+            font-size: 0.8em;
+        }
+
+        .social-icons a:hover {
+            color: #FFD700;
         }
 
         .burger {
@@ -167,35 +199,6 @@
             margin-top: 20px;
         }
 
-        .social-icons {
-            margin-left: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 1.2em;
-            text-decoration: none;
-            position: relative;
-        }
-
-        .social-icons a:hover::after {
-            content: attr(data-title);
-            position: absolute;
-            background: #222;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            top: 30px;
-            left: -10px;
-            white-space: nowrap;
-        }
-
-        .social-icons a:hover {
-            color: #FFD700;
-        }
-
         footer {
             background: rgba(34, 34, 34, 0.9);
             color: white;
@@ -244,9 +247,9 @@
         <input type="text" placeholder="Search...">
     </div>
     <div class="social-icons">
-        <a href="#" data-title="Sign In">&#128100;</a>
-        <a href="#" data-title="Wishlist">&#10084;&#65039;</a>
-        <a href="#" data-title="Cart">&#128722;</a>
+        <a href="#" data-title="Sign In">👤</a>
+        <a href="#" data-title="Wishlist">❤️</a>
+        <a href="#" data-title="Cart">🛒</a>
     </div>
     <div class="burger" onclick="toggleMenu()">
         <div></div>
@@ -271,7 +274,7 @@
         <span>Follow Us: </span>
         <a href="#" aria-label="Instagram" title="Instagram">📸</a>
         <a href="#" aria-label="Facebook" title="Facebook">📘</a>
-        <a href="#" aria-label="Twitter" title="Twitter">🐦</a>
+        <a href="#" aria-label="X" title="X">𝕏</a>
         <a href="#" aria-label="YouTube" title="YouTube">▶️</a>
     </div>
 </footer>
