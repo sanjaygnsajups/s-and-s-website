@@ -7,7 +7,18 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Lato', sans-serif; background: #fafafa; color: #333; }
-        nav { position: fixed; width: 100%; background: rgba(240,240,240,0.8); display: flex; justify-content: space-between; align-items: center; padding: 10px 30px; z-index: 1000; backdrop-filter: blur(5px); flex-wrap: wrap; }
+        nav { 
+            position: fixed; 
+            width: 100%; 
+            background: rgba(240,240,240,0.8); 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px 30px; 
+            z-index: 1000; 
+            backdrop-filter: blur(5px); 
+            flex-wrap: wrap; 
+        }
         .logo { font-size: 1.6em; color: #333; font-weight: bold; text-decoration: none; }
         .burger { display: none; flex-direction: column; justify-content: space-between; width: 25px; height: 18px; cursor: pointer; }
         .burger div { background: white; height: 3px; border-radius: 2px; transition: all 0.3s ease; }
@@ -19,45 +30,156 @@
         .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
         .nav-links li { position: relative; }
         .nav-links li a { text-decoration: none; color: #333; font-size: 1em; padding: 10px; display: inline-block; transition: color 0.3s ease; }
-        .nav-links li a:hover::after { content: attr(data-title); position: absolute; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; top: 30px; left: 0; white-space: nowrap; font-size: 0.8em; }
+        .nav-links li a:hover::after { 
+            content: attr(data-title); 
+            position: absolute; 
+            background: #222; 
+            color: #fff; 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            top: 30px; 
+            left: 0; 
+            white-space: nowrap; 
+            font-size: 0.8em; 
+        }
         .nav-links li a:hover { color: #FF6347; }
-        .nav-links li ul { display: none; position: absolute; top: 30px; left: 0; background: rgba(34,34,34,0.95); padding: 10px 0; list-style: none; z-index: 9999; }
+        .nav-links li ul { 
+            display: none; 
+            position: absolute; 
+            top: 30px; 
+            left: 0; 
+            background: rgba(34,34,34,0.95); 
+            padding: 10px 0; 
+            list-style: none; 
+            z-index: 9999; 
+        }
         .nav-links li:hover ul { display: block; }
-        .nav-links li ul li a { display: block; padding: 8px 20px; white-space: nowrap; color: white; }
-        .nav-links li ul li a:hover { background: #FF6347; }
+        .nav-links li ul li a { 
+            display: block; 
+            padding: 8px 20px; 
+            white-space: nowrap; 
+            color: white; 
+            background: transparent; 
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .nav-links li ul li a:hover { 
+            background: white; 
+            color: #222; 
+        }
 
         .search-social { display: flex; align-items: center; gap: 20px; }
-        .search-bar input { padding: 5px 10px; border: none; border-radius: 20px; outline: none; font-size: 1em; }
-
+        .search-bar input { 
+            padding: 5px 10px; 
+            border: none; 
+            border-radius: 20px; 
+            outline: none; 
+            font-size: 1em; 
+        }
         .social-icons { display: flex; gap: 10px; }
         .social-icons a { color: #333; font-size: 1.2em; text-decoration: none; position: relative; }
-        .social-icons a:hover::after { content: attr(data-title); position: absolute; background: #222; color: #fff; padding: 2px 6px; border-radius: 4px; top: 30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.75em; }
+        .social-icons a:hover::after { 
+            content: attr(data-title); 
+            position: absolute; 
+            background: #222; 
+            color: #fff; 
+            padding: 2px 6px; 
+            border-radius: 4px; 
+            top: 30px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            white-space: nowrap; 
+            font-size: 0.75em; 
+        }
         .social-icons a:hover { color: #FF6347; }
 
         @media (max-width: 768px) {
             .burger { display: flex; }
-            .nav-links { position: fixed; top: 60px; right: -100%; flex-direction: column; align-items: center; gap: 30px; background: rgba(34,34,34,0.9); height: 100vh; width: 200px; padding-top: 20px; transition: right 0.3s ease; }
+            .nav-links { 
+                position: fixed; 
+                top: 60px; 
+                right: -100%; 
+                flex-direction: column; 
+                align-items: center; 
+                gap: 30px; 
+                background: rgba(34,34,34,0.9); 
+                height: 100vh; 
+                width: 200px; 
+                padding-top: 20px; 
+                transition: right 0.3s ease; 
+            }
             .nav-links.active { right: 0; }
             .nav-links li { width: 100%; text-align: center; }
-            .nav-links li ul { position: static; display: none; background: rgba(0,0,0,0.5); }
+            .nav-links li ul { 
+                position: static; 
+                display: none; 
+                background: rgba(0,0,0,0.5); 
+            }
             .nav-links li.show ul { display: block; }
-            .nav-links li a { color: white; font-size: 1.2em; padding: 15px 20px; }
+            .nav-links li a { 
+                color: white; 
+                font-size: 1.2em; 
+                padding: 15px 20px; 
+            }
             .nav-links li a:hover { background: #FF6347; }
             .search-social { margin-top: 10px; justify-content: center; width: 100%; }
         }
 
-        header { height: 100vh; background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover; display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; color: white; text-shadow: 2px 2px 5px rgba(0,0,0,0.5); }
+        header { 
+            height: 100vh; 
+            background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column; 
+            text-align: center; 
+            color: white; 
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
+        }
         header h1 { font-size: 3.5em; }
         header p { font-size: 1.2em; max-width: 600px; margin-top: 20px; }
-        footer { background: rgba(34,34,34,0.9); color: white; text-align: center; padding: 20px 10px; }
+
+        footer { 
+            background: rgba(34,34,34,0.9); 
+            color: white; 
+            text-align: center; 
+            padding: 20px 10px; 
+        }
         footer a { color: white; margin: 0 10px; text-decoration: none; }
         footer a:hover { color: #FF6347; }
         .footer-links { margin-top: 10px; }
-        #modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 2000; }
-        #modal-content { background: white; padding: 20px; border-radius: 8px; max-width: 500px; text-align: center; color: #333; }
+        footer p { margin-top: 15px; }
+
+        #modal { 
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.7); 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 2000; 
+        }
+        #modal-content { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            max-width: 500px; 
+            text-align: center; 
+            color: #333; 
+        }
         #modal-title { font-size: 1.5em; font-weight: bold; }
         #modal p { margin-top: 15px; }
-        #modal-close { margin-top: 20px; background: #FF6347; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+        #modal-close { 
+            margin-top: 20px; 
+            background: #FF6347; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+        }
         #modal-close:hover { background: #FF4500; }
     </style>
 </head>
@@ -67,9 +189,7 @@
     <div class="nav-container">
         <a href="#" class="logo">Needle & Thread</a>
         <div class="burger">
-            <div></div>
-            <div></div>
-            <div></div>
+            <div></div><div></div><div></div>
         </div>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
@@ -107,7 +227,7 @@
 </header>
 
 <footer>
-    <div style="margin-top: 10px;">
+    <div>
         <span>Follow Us: </span>
         <a href="#" aria-label="Instagram" title="Instagram">📷</a>
         <a href="#" aria-label="Facebook" title="Facebook">📘</a>
@@ -116,10 +236,13 @@
         <a href="#" aria-label="Telegram" title="Telegram">📱</a>
         <a href="#" aria-label="WhatsApp" title="WhatsApp">💬</a>
     </div>
+
     <div class="footer-links">
-        <a href="#">About Us</a> | <a href="#">My Account</a> | <a href="#">Size Chart</a> | <a href="#">FAQs</a> | <a href="#">Rewards</a> | <a href="#">Shipping Policy</a> | <a href="#">Returns Policy</a> | <a href="#">Privacy Policy</a> | <a href="#">T&Cs</a> | <a href="#">Contact Us</a>
+        <a href="#">About Us</a> | <a href="#">My Account</a> | <a href="#">Size Chart</a> | <a href="#">FAQs</a> | 
+        <a href="#">Rewards</a> | <a href="#">Shipping Policy</a> | <a href="#">Returns Policy</a> | 
+        <a href="#">Privacy Policy</a> | <a href="#">T&Cs</a> | <a href="#">Contact Us</a>
     </div>
-    
+
     <p>&copy; 2025 Needle & Thread. All Rights Reserved.</p>
 </footer>
 
@@ -150,16 +273,16 @@
     });
 
     const contentMap = {
-        "About Us": "We are Needle & Thread — where style meets comfort. Our mission is to bring premium fashion directly to your wardrobe!",
-        "My Account": "Manage your profile, check orders, update preferences and access exclusive offers right here.",
-        "Size Chart": "Our sizes are true to fit! Refer to the size chart on product pages to pick your perfect fit.",
-        "FAQs": "Got questions? We've answered the most common ones for you on our FAQ page!",
-        "Rewards": "Earn points every time you shop with us! Redeem them for exciting discounts.",
-        "Shipping Policy": "We offer reliable shipping globally. Your style will arrive safe and sound!",
-        "Returns Policy": "Not satisfied? Easy 7-day returns on all items. Customer happiness is our priority!",
-        "Privacy Policy": "Your data is safe with us. Read about how we protect your personal info here.",
-        "T&Cs": "Please read our terms and conditions for a smooth shopping experience.",
-        "Contact Us": "Need help? Reach out to our team via email or live chat anytime."
+        "About Us": "We are Needle & Thread — where style meets comfort.",
+        "My Account": "Manage your profile, check orders and more.",
+        "Size Chart": "Use the size chart to find your perfect fit.",
+        "FAQs": "Common questions answered.",
+        "Rewards": "Earn points when you shop!",
+        "Shipping Policy": "Global shipping available.",
+        "Returns Policy": "Easy 7-day returns.",
+        "Privacy Policy": "We protect your personal info.",
+        "T&Cs": "Terms & Conditions for shopping.",
+        "Contact Us": "Contact us anytime via chat or email."
     };
 
     document.querySelectorAll('.footer-links a').forEach(link => {
