@@ -1,426 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Needle & Thread</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Needle & Thread</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family:sans-serif; background:#fafafa;}
 
-        body {
-            font-family: 'Lato', sans-serif;
-            background: #fafafa;
-            color: #333;
-        }
+    nav {
+      position:fixed;
+      top:0; left:0; width:100%;
+      background: rgba(240,240,240,0.9);
+      display:flex; justify-content:space-between; align-items:center;
+      padding:10px 20px;
+      z-index:1000;
+    }
 
-        nav {
-            position: fixed;
-            width: 100%;
-            background: rgba(240, 240, 240, 0.8);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 30px;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
+    .logo {font-size:1.5em; font-weight:bold; text-decoration:none; color:#333;}
 
-        .logo {
-            font-size: 1.6em;
-            color: #333;
-            font-weight: bold;
-            text-decoration: none;
-        }
+    .nav-actions {
+      display:flex; align-items:center; gap:15px;
+    }
 
-        .burger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 25px;
-            height: 18px;
-            cursor: pointer;
-        }
+    .search-bar {
+      padding:5px 10px; border:1px solid #ccc; border-radius:5px;
+    }
 
-        .burger div {
-            background: white;
-            height: 3px;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
+    .icon {font-size:18px; text-decoration:none; color:#333;}
 
-        .burger.toggle div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
+    .nav-links {
+      list-style:none;
+      display:flex; gap:20px;
+      align-items:center;
+    }
 
-        .burger.toggle div:nth-child(2) {
-            opacity: 0;
-        }
+    .nav-links li {position:relative;}
+    .nav-links li a {
+      text-decoration:none;
+      color:#333;
+      padding:8px 12px;
+      display:block;
+    }
 
-        .burger.toggle div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+    .nav-links li ul {
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      background:#222;
+      list-style:none;
+      min-width:150px;
+      z-index:2000;
+    }
 
-        @media (max-width: 768px) {
-            .burger {
-                display: flex;
-            }
+    .nav-links li ul li a {
+      color:white;
+      padding:10px 15px;
+    }
 
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                flex-direction: column;
-                align-items: center;
-                justify-content: start;
-                gap: 30px;
-                background: rgba(34, 34, 34, 0.9);
-                height: 100vh;
-                width: 200px;
-                padding-top: 20px;
-                transition: right 0.3s ease;
-            }
+    .nav-links li ul li a:hover {
+      background:#FF6347;
+    }
 
-            .nav-links.active {
-                right: 0;
-            }
+    .nav-links li:hover ul {
+      display:block;
+    }
 
-            .nav-links li {
-                display: block;
-                width: 100%;
-                text-align: center;
-            }
+    .burger {
+      display:none;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+    }
 
-            .nav-links li a {
-                color: white;
-                font-size: 1.2em;
-                padding: 15px 20px;
-                display: block;
-                width: 100%;
-                text-decoration: none;
-                text-align: center;
-            }
+    .burger div {
+      width:25px;
+      height:3px;
+      background:#333;
+      border-radius:2px;
+    }
 
-            .nav-links li a:hover {
-                background: #FF6347;
-            }
-        }
+    @media (max-width: 768px) {
+      .burger {display:flex;}
+      .nav-links {
+        position:fixed;
+        top:0; right:-100%;
+        flex-direction:column;
+        justify-content:flex-start;
+        align-items:start;
+        background:rgba(0,0,0,0.95);
+        height:100vh;
+        width:250px;
+        padding:60px 20px;
+        gap:15px;
+        transition:right 0.3s ease;
+      }
+      .nav-links.active { right:0; }
+      .nav-links li ul {
+        position:static;
+        background:none;
+        display:none;
+      }
+      .nav-links li.show ul {
+        display:block;
+      }
+      .nav-links li a {
+        color:white;
+        padding:8px 10px;
+      }
+      .nav-links li ul li a {
+        color:white;
+      }
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-            align-items: center;
-        }
+    footer {
+      background:#222;
+      color:white;
+      padding:20px;
+      text-align:center;
+    }
 
-        .nav-links li {
-            position: relative;
-        }
+    .footer-links a {
+      color:#aaa;
+      margin:0 10px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .footer-links a:hover {
+      text-decoration:underline;
+    }
 
-        .nav-links li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 1em;
-            padding: 10px;
-            display: inline-block;
-            transition: color 0.3s ease;
-        }
+    /* Modal styles */
+    #modal {
+      display:none;
+      position:fixed;
+      top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.7);
+      justify-content:center;
+      align-items:center;
+      z-index:3000;
+    }
 
-        .nav-links li a:hover::after {
-            content: attr(data-title);
-            position: absolute;
-            background: #222;
-            color: #fff;
-            padding: 4px 8px;
-            border-radius: 4px;
-            top: 30px;
-            left: 0;
-            white-space: nowrap;
-            font-size: 0.8em;
-        }
+    .modal-content {
+      background:#fff;
+      padding:20px;
+      border-radius:10px;
+      text-align:center;
+      width:80%; max-width:400px;
+    }
 
-        .nav-links li a:hover {
-            color: #FF6347;
-        }
-
-        .nav-links li ul {
-            display: none;
-            position: absolute;
-            top: 30px;
-            left: 0;
-            background: rgba(34, 34, 34, 0.95);
-            padding: 10px 0;
-            list-style: none;
-            z-index: 9999;
-        }
-
-        .nav-links li:hover ul {
-            display: block;
-        }
-
-        .nav-links li ul li a {
-            display: block;
-            padding: 8px 20px;
-            white-space: nowrap;
-            color: white;
-        }
-
-        .nav-links li ul li a:hover {
-            background: #FF6347;
-        }
-
-        .search-bar {
-            display: inline-block;
-            margin: 0 20px;
-        }
-
-        .search-bar input {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 20px;
-            outline: none;
-            font-size: 1em;
-        }
-
-        .social-icons {
-            margin-left: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .social-icons a {
-            color: #333;
-            font-size: 1.2em;
-            text-decoration: none;
-            position: relative;
-        }
-
-        .social-icons a:hover::after {
-            content: attr(data-title);
-            position: absolute;
-            background: #222;
-            color: #fff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            white-space: nowrap;
-            font-size: 0.75em;
-        }
-
-        .social-icons a:hover {
-            color: #FF6347;
-        }
-
-        header {
-            height: 100vh;
-            background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            color: white;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-        }
-
-        header h1 {
-            font-size: 3.5em;
-        }
-
-        header p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin-top: 20px;
-        }
-
-        footer {
-            background: rgba(34, 34, 34, 0.9);
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-        }
-
-        footer a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #FF6347;
-        }
-
-        .footer-links {
-            margin-top: 10px;
-        }
-
-        /* Modal Styling */
-        #modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        #modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 500px;
-            text-align: center;
-            color: #333;
-        }
-
-        #modal-title {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        #modal p {
-            margin-top: 15px;
-        }
-
-        #modal-close {
-            margin-top: 20px;
-            background: #FF6347;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        #modal-close:hover {
-            background: #FF4500;
-        }
-
-    </style>
+    .close-btn {
+      background:#333; color:white;
+      padding:5px 10px;
+      border:none;
+      border-radius:5px;
+      cursor:pointer;
+      margin-top:10px;
+    }
+  </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo">Needle & Thread</a>
-    <div class="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li>
-            <a href="#">Men</a>
-            <ul>
-                <li><a href="#">Streetwear</a></li>
-                <li><a href="#">Casualwear</a></li>
-                <li><a href="#">Athleisure</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Women</a>
-            <ul>
-                <li><a href="#">Streetwear</a></li>
-                <li><a href="#">Casualwear</a></li>
-                <li><a href="#">Athleisure</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Kids</a></li>
-        <li><a href="#">Sale</a></li>
-    </ul>
-    <div class="search-bar">
-        <input type="text" placeholder="Search...">
-    </div>
-    <div class="social-icons">
-        <a href="#" data-title="Sign In">👤</a>
-        <a href="#" data-title="Wishlist">❤️</a>
-        <a href="#" data-title="Cart">🛒</a>
-    </div>
+  <a href="#" class="logo">Needle & Thread</a>
+  <div class="burger" onclick="toggleMenu()">
+    <div></div><div></div><div></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li>
+      <a href="#" onclick="toggleSubmenu(event)">Men</a>
+      <ul>
+        <li><a href="#">Streetwear</a></li>
+        <li><a href="#">Casualwear</a></li>
+        <li><a href="#">Athleisure</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#" onclick="toggleSubmenu(event)">Women</a>
+      <ul>
+        <li><a href="#">Streetwear</a></li>
+        <li><a href="#">Casualwear</a></li>
+        <li><a href="#">Athleisure</a></li>
+      </ul>
+    </li>
+    <li><a href="#">Kids</a></li>
+    <li><a href="#">Sale</a></li>
+  </ul>
+  <div class="nav-actions">
+    <input type="text" class="search-bar" placeholder="Search...">
+    <a href="#" class="icon">♡</a>
+    <a href="#" class="icon">👤</a>
+  </div>
 </nav>
 
-<header>
-    <h1>Needle & Thread</h1>
-    <p>For your Everyday Fashion! Premium quality meets timeless style — shop now!</p>
+<header style="height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;color:white;background:url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') center/cover;">
+  <h1>Welcome to Needle & Thread</h1>
 </header>
 
 <footer>
-    <p>&copy; 2025 Needle & Thread. All Rights Reserved.</p>
-    <div style="margin-top: 10px;">
-        <span>Follow Us: </span>
-        <a href="#" aria-label="Instagram" title="Instagram">📷</a>
-        <a href="#" aria-label="Facebook" title="Facebook">📘</a>
-        <a href="#" aria-label="X" title="X">𝕏</a>
-        <a href="#" aria-label="YouTube" title="YouTube">▶️</a>
-        <a href="#" aria-label="Telegram" title="Telegram">📱</a>
-        <a href="#" aria-label="WhatsApp" title="WhatsApp">💬</a>
-    </div>
-    <div class="footer-links">
-        <a href="#">About Us</a> | 
-        <a href="#">My Account</a> | 
-        <a href="#">Size Chart</a> | 
-        <a href="#">FAQs</a> | 
-        <a href="#">Rewards</a> | 
-        <a href="#">Shipping Policy</a> | 
-        <a href="#">Returns Policy</a> | 
-        <a href="#">Privacy Policy</a> | 
-        <a href="#">T&Cs</a> | 
-        <a href="#">Contact Us</a>
-    </div>
+  <div class="footer-links">
+    <a href="#">About Us</a>
+    <a href="#">My Account</a>
+    <a href="#">Size Chart</a>
+    <a href="#">FAQs</a>
+    <a href="#">Rewards</a>
+    <a href="#">Shipping Policy</a>
+    <a href="#">Returns Policy</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">T&Cs</a>
+    <a href="#">Contact Us</a>
+  </div>
 </footer>
 
-<!-- Modal -->
 <div id="modal">
-    <div id="modal-content">
-        <div id="modal-title"></div>
-        <p id="modal-content"></p>
-        <button id="modal-close" onclick="closeModal()">Close</button>
-    </div>
+  <div class="modal-content">
+    <h2 id="modal-title"></h2>
+    <p id="modal-content-text"></p>
+    <button class="close-btn" onclick="closeModal()">Close</button>
+  </div>
 </div>
 
 <script>
-    const burger = document.querySelector('.burger');
-    const navLinks = document.querySelector('.nav-links');
+function toggleMenu() {
+  const nav = document.getElementById('navLinks');
+  nav.classList.toggle('active');
+}
 
-    burger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        burger.classList.toggle('toggle');
-    });
+function toggleSubmenu(event) {
+  if (window.innerWidth <= 768) {
+    event.preventDefault();
+    let parent = event.target.parentElement;
+    parent.classList.toggle('show');
+  }
+}
 
-    const contentMap = {
-        "About Us": "We are Needle & Thread — where style meets comfort. Our mission is to bring premium fashion directly to your wardrobe!",
-        "My Account": "Manage your profile, check orders, update preferences and access exclusive offers right here.",
-        "Size Chart": "Our sizes are true to fit! Refer to the size chart on product pages to pick your perfect fit.",
-        "FAQs": "Got questions? We've answered the most common ones for you on our FAQ page!",
-        "Rewards": "Earn points every time you shop with us! Redeem them for exciting discounts.",
-        "Shipping Policy": "We offer reliable shipping globally. Your style will arrive safe and sound!",
-        "Returns Policy": "Not satisfied? Easy 7-day returns on all items. Customer happiness is our priority!",
-        "Privacy Policy": "Your data is safe with us. Read about how we protect your personal info here.",
-        "T&Cs": "Please read our terms and conditions for a smooth shopping experience.",
-        "Contact Us": "Need help? Reach out to our team via email or live chat anytime."
-    };
+const contentMap = {
+  "About Us": "We are Needle & Thread — where style meets comfort. Our mission is to bring premium fashion directly to your wardrobe!",
+  "My Account": "Manage your profile, check orders, update preferences and access exclusive offers right here.",
+  "Size Chart": "Our sizes are true to fit! Refer to the size chart on product pages to pick your perfect fit.",
+  "FAQs": "Got questions? We've answered the most common ones for you on our FAQ page!",
+  "Rewards": "Earn points every time you shop with us! Redeem them for exciting discounts.",
+  "Shipping Policy": "We offer reliable shipping globally. Your style will arrive safe and sound!",
+  "Returns Policy": "Not satisfied? Easy 7-day returns on all items. Customer happiness is our priority!",
+  "Privacy Policy": "Your data is safe with us. Read about how we protect your personal info here.",
+  "T&Cs": "Please read our terms and conditions for a smooth shopping experience.",
+  "Contact Us": "Need help? Reach out to our team via email or live chat anytime."
+};
 
-    document.querySelectorAll('.footer-links a').forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const title = e.target.innerText.trim();
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-content').innerText = contentMap[title] || "Coming soon!";
-            document.getElementById('modal').style.display = 'flex';
-        });
-    });
+document.querySelectorAll('.footer-links a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const title = e.target.innerText.trim();
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-content-text').innerText = contentMap[title] || "Coming soon!";
+    document.getElementById('modal').style.display = 'flex';
+  });
+});
 
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-    }
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
 </script>
 
 </body>
