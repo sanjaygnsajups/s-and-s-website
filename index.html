@@ -37,7 +37,7 @@
         }
 
         .burger {
-            display: flex;
+            display: none;
             flex-direction: column;
             justify-content: space-between;
             width: 25px;
@@ -77,7 +77,7 @@
                 align-items: center;
                 justify-content: start;
                 gap: 30px;
-                background: rgba(34, 34, 34, 0.9);  /* Increased opacity */
+                background: rgba(34, 34, 34, 0.9);
                 height: 100vh;
                 width: 200px;
                 padding-top: 20px;
@@ -86,6 +86,26 @@
 
             .nav-links.active {
                 right: 0;
+            }
+
+            .nav-links li {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links li a {
+                color: white;
+                font-size: 1.2em;
+                padding: 15px 20px;
+                display: block;
+                width: 100%;
+                text-decoration: none;
+                text-align: center;
+            }
+
+            .nav-links li a:hover {
+                background: #FF6347;
             }
         }
 
@@ -104,6 +124,8 @@
             text-decoration: none;
             color: #333;
             font-size: 1em;
+            padding: 10px;
+            display: inline-block;
             transition: color 0.3s ease;
         }
 
@@ -132,7 +154,7 @@
             background: rgba(34, 34, 34, 0.95);
             padding: 10px 0;
             list-style: none;
-            z-index: 9999;  /* Added to ensure dropdown appears above other content */
+            z-index: 9999;
         }
 
         .nav-links li:hover ul {
@@ -144,6 +166,10 @@
             padding: 8px 20px;
             white-space: nowrap;
             color: white;
+        }
+
+        .nav-links li ul li a:hover {
+            background: #FF6347;
         }
 
         .search-bar {
