@@ -37,64 +37,56 @@
         }
 
         .burger {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 25px;
-    height: 18px;
-}
-
-.burger div {
-    background: white;
-    height: 3px;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-}
-
-.burger.toggle div:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.burger.toggle div:nth-child(2) {
-    opacity: 0;
-}
-
-.burger.toggle div:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-@media (max-width: 768px) {
-    .burger {
-        display: flex;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 60px;
-        right: -100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
-        gap: 30px;
-        background: rgba(34, 34, 34, 0.95);
-        height: 100vh;
-        width: 200px;
-        padding-top: 20px;
-        transition: right 0.3s ease;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-}
-
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25px;
+            height: 18px;
+        }
 
         .burger div {
-            width: 25px;
+            background: white;
             height: 3px;
-            background: #333;
-            transition: 0.3s;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .burger.toggle div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger.toggle div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger.toggle div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                flex-direction: column;
+                align-items: center;
+                justify-content: start;
+                gap: 30px;
+                background: rgba(34, 34, 34, 0.95);
+                height: 100vh;
+                width: 200px;
+                padding-top: 20px;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
         }
 
         .nav-links {
@@ -197,35 +189,6 @@
             color: #FF6347;
         }
 
-        @media (max-width: 768px) {
-            .burger {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                background: rgba(34, 34, 34, 0.95);
-                height: 100vh;
-                width: 200px;
-                flex-direction: column;
-                align-items: center;
-                justify-content: start;
-                gap: 30px;
-                padding-top: 20px;
-                transition: right 0.3s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links li ul {
-                position: static;
-            }
-        }
-
         header {
             height: 100vh;
             background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover;
@@ -274,7 +237,7 @@
 
 <nav>
     <a href="#" class="logo">Needle & Thread</a>
-    <div class="burger" onclick="toggleMenu(this)">
+    <div class="burger">
         <div></div>
         <div></div>
         <div></div>
@@ -341,15 +304,13 @@
 </footer>
 
 <script>
-    function toggleMenu(burger) {
-        const navLinks = document.querySelector('.nav-links');
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+
+    burger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-    }
-</script>
-<script>
-    function toggleMenu() {
-        document.querySelector('.nav-links').classList.toggle('active');
-    }
+        burger.classList.toggle('toggle');
+    });
 </script>
 
 <!-- Modal Block Starts -->
@@ -416,15 +377,5 @@
 </script>
 <!-- Modal Block Ends -->
 
-
 </body>
-    <script>
-    const burger = document.querySelector('.burger');
-    const navLinks = document.querySelector('.nav-links');
-
-    burger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        burger.classList.toggle('toggle');
-    });
-</script>
 </html>
