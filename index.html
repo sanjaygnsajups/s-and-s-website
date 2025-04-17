@@ -306,6 +306,78 @@
         navLinks.classList.toggle('active');
     }
 </script>
+<script>
+    function toggleMenu() {
+        document.querySelector('.nav-links').classList.toggle('active');
+    }
+</script>
+
+<!-- Modal Block Starts -->
+<div id="modal" style="
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:2000;">
+    <div style="
+        background:white;
+        padding:20px;
+        border-radius:12px;
+        max-width:500px;
+        text-align:center;
+        position:relative;">
+        <h2 id="modal-title">Title</h2>
+        <p id="modal-content">Content goes here.</p>
+        <button onclick="closeModal()" style="
+            margin-top:20px;
+            padding:8px 20px;
+            border:none;
+            background:#333;
+            color:white;
+            border-radius:8px;
+            cursor:pointer;">
+            Close
+        </button>
+    </div>
+</div>
+
+<script>
+    const contentMap = {
+        "About Us": "We are Needle & Thread — where style meets comfort. Our mission is to bring premium fashion directly to your wardrobe!",
+        "My Account": "Manage your profile, check orders, update preferences and access exclusive offers right here.",
+        "Size Chart": "Our sizes are true to fit! Refer to the size chart on product pages to pick your perfect fit.",
+        "FAQs": "Got questions? We've answered the most common ones for you on our FAQ page!",
+        "Rewards": "Earn points every time you shop with us! Redeem them for exciting discounts.",
+        "Shipping Policy": "We offer reliable shipping globally. Your style will arrive safe and sound!",
+        "Returns Policy": "Not satisfied? Easy 7-day returns on all items. Customer happiness is our priority!",
+        "Privacy Policy": "Your data is safe with us. Read about how we protect your personal info here.",
+        "T&Cs": "Please read our terms and conditions for a smooth shopping experience.",
+        "Contact Us": "Need help? Reach out to our team via email or live chat anytime."
+    };
+
+    document.querySelectorAll('.footer-links a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const title = e.target.innerText.trim();
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-content').innerText = contentMap[title] || "Coming soon!";
+            document.getElementById('modal').style.display = 'flex';
+        });
+    });
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+</script>
+<!-- Modal Block Ends -->
+
+</body>
+</html>
 
 </body>
 </html>
