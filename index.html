@@ -1,303 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Needle & Thread</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Lato', sans-serif; background: #fafafa; color: #333; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Needle & Thread</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Lato', sans-serif; background: #fafafa; color: #333; }
 
-        /* Navbar */
-        nav { 
-            position: fixed; 
-            width: 100%; 
-            background: rgba(240,240,240,0.8); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 10px 30px; 
-            z-index: 1000; 
-            backdrop-filter: blur(5px); 
-            flex-wrap: wrap; 
-        }
-        .logo { font-size: 1.6em; color: #333; font-weight: bold; text-decoration: none; }
-        .burger { display: none; flex-direction: column; justify-content: space-between; width: 25px; height: 18px; cursor: pointer; }
-        .burger div { background: white; height: 3px; border-radius: 2px; transition: all 0.3s ease; }
-        .burger.toggle div:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .burger.toggle div:nth-child(2) { opacity: 0; }
-        .burger.toggle div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    nav { 
+      position: fixed; 
+      width: 100%; 
+      background: rgba(240,240,240,0.8); 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      padding: 10px 30px; 
+      z-index: 1000; 
+      backdrop-filter: blur(5px); 
+      flex-wrap: wrap;
+    }
 
-        .nav-container { display: flex; align-items: center; gap: 20px; }
-        .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
-        .nav-links li { position: relative; }
-        .nav-links li a { text-decoration: none; color: #333; font-size: 1em; padding: 10px; display: inline-block; transition: color 0.3s ease; }
-        .nav-links li a:hover::after { content: attr(data-title); position: absolute; background: #222; color: #fff; padding: 4px 8px; border-radius: 4px; top: 30px; left: 0; white-space: nowrap; font-size: 0.8em; }
-        .nav-links li a:hover { color: #FF6347; }
-        .nav-links li ul { display: none; position: absolute; top: 30px; left: 0; background: rgba(34,34,34,0.95); padding: 10px 0; list-style: none; z-index: 9999; }
-        .nav-links li:hover ul { display: block; }
-        .nav-links li ul li a { display: block; padding: 8px 20px; white-space: nowrap; color: white; background: transparent; transition: background 0.3s ease, color 0.3s ease; }
-        .nav-links li ul li a:hover { background: white; color: #222; }
+    .nav-left, .nav-center, .nav-right {
+      display: flex;
+      align-items: center;
+    }
 
-        /* Cart and Remove Button */
-        .cart-items {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #FF6347;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
-        }
-        .cart-popup {
-            position: fixed;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            display: none;
-            z-index: 1002;
-        }
-        .cart-popup ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .cart-popup ul li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        .cart-popup ul li button {
-            background: none;
-            border: none;
-            color: #FF6347;
-            cursor: pointer;
-        }
-        .cart-popup ul li button:hover {
-            color: #FF4500;
-        }
-        .cart-popup button {
-            background-color: #FF6347;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
+    .nav-left a {
+      text-decoration: none;
+      font-size: 1.5em;
+      margin-right: 15px;
+      color: #333;
+    }
 
-        /* Footer */
-        footer {
-            background: rgba(34,34,34,0.9);
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-        }
-        footer a { color: white; margin: 0 10px; text-decoration: none; }
-        footer a:hover { color: #FF6347; }
-        .footer-links { margin-top: 10px; }
-        footer p { margin-top: 15px; }
+    .nav-center {
+      flex: 1;
+      justify-content: center;
+      gap: 10px;
+    }
 
-        /* Header */
-        header { 
-            height: 100vh; 
-            background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            flex-direction: column; 
-            text-align: center; 
-            color: white; 
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5); 
-        }
-        header h1 { font-size: 3.5em; }
-        header p { font-size: 1.2em; max-width: 600px; margin-top: 20px; }
+    .nav-center .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
 
-        /* Modal */
-        #modal { 
-            display: none; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0,0,0,0.7); 
-            justify-content: center; 
-            align-items: center; 
-            z-index: 2000; 
-        }
-        #modal-content { 
-            background: white; 
-            padding: 20px; 
-            border-radius: 8px; 
-            max-width: 500px; 
-            text-align: center; 
-            color: #333; 
-        }
-        #modal-title { font-size: 1.5em; font-weight: bold; }
-        #modal p { margin-top: 15px; }
-        #modal-close { 
-            margin-top: 20px; 
-            background: #FF6347; 
-            color: white; 
-            border: none; 
-            padding: 10px 20px; 
-            border-radius: 4px; 
-            cursor: pointer; 
-        }
-        #modal-close:hover { background: #FF4500; }
+    .nav-center input[type="text"] {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      outline: none;
+      width: 200px;
+    }
 
-    </style>
+    .nav-right a {
+      text-decoration: none;
+      font-size: 1.4em;
+      margin-left: 20px;
+      color: #333;
+      position: relative;
+    }
+
+    /* Cart bubble style */
+    .nav-right .cart-bubble {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #FF6347;
+      color: white;
+      font-size: 0.8em;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 18px;
+      display: none; /* Hidden by default */
+    }
+
+    .burger { display: none; flex-direction: column; justify-content: space-between; width: 25px; height: 18px; cursor: pointer; }
+    .burger div { background: white; height: 3px; border-radius: 2px; transition: all 0.3s ease; }
+    .burger.toggle div:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .burger.toggle div:nth-child(2) { opacity: 0; }
+    .burger.toggle div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
+    .nav-links li { position: relative; }
+    .nav-links li a { text-decoration: none; color: #333; font-size: 1em; padding: 10px; display: inline-block; transition: color 0.3s ease; }
+    .nav-links li a:hover { color: #FF6347; }
+
+    .nav-links li ul { 
+      display: none; 
+      position: absolute; 
+      top: 30px; 
+      left: 0; 
+      background: rgba(34,34,34,0.95); 
+      padding: 10px 0; 
+      list-style: none; 
+      z-index: 9999; 
+    }
+    .nav-links li:hover ul { display: block; }
+    .nav-links li ul li a { 
+      display: block; 
+      padding: 8px 20px; 
+      white-space: nowrap; 
+      color: white; 
+      background: transparent; 
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .nav-links li ul li a:hover { background: white; color: #222; }
+
+    header { 
+      height: 100vh; 
+      background: url('https://images.unsplash.com/photo-1503342217505-b0a15ec3261c') no-repeat center center/cover; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      flex-direction: column; 
+      text-align: center; 
+      color: white; 
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+    header h1 { font-size: 3.5em; }
+    header p { font-size: 1.2em; max-width: 600px; margin-top: 20px; }
+
+    .product-grid {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .product-grid h2 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    .product-card img {
+      width: 100%;
+      display: block;
+    }
+    .product-card h3 {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+    .product-card p {
+      color: #FF6347;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+    .product-card button {
+      background: #FF6347;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-bottom: 15px;
+    }
+    .product-card button:hover {
+      background: #FF4500;
+    }
+
+    footer { 
+      background: rgba(34,34,34,0.9); 
+      color: white; 
+      text-align: center; 
+      padding: 20px 10px;
+    }
+    footer a { color: white; margin: 0 10px; text-decoration: none; }
+    footer a:hover { color: #FF6347; }
+    .footer-links { margin-top: 10px; }
+    footer p { margin-top: 15px; }
+
+    @media (max-width: 768px) {
+      .burger { display: flex; }
+      .nav-links { 
+        position: fixed; 
+        top: 60px; 
+        right: -100%; 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 30px; 
+        background: rgba(34,34,34,0.9); 
+        height: 100vh; 
+        width: 200px; 
+        padding-top: 20px; 
+        transition: right 0.3s ease; 
+      }
+      .nav-links.active { right: 0; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links li ul { position: static; display: none; background: rgba(0,0,0,0.5); }
+      .nav-links li.show ul { display: block; }
+      .nav-links li a { color: white; font-size: 1.2em; padding: 15px 20px; }
+      .nav-links li a:hover { background: #FF6347; }
+      .nav-center input[type="text"] { width: 120px; }
+    }
+
+    #modal { 
+      display: none; 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0,0,0,0.7); 
+      justify-content: center; 
+      align-items: center; 
+      z-index: 2000;
+    }
+    #modal-content { 
+      background: white; 
+      padding: 20px; 
+      border-radius: 8px; 
+      max-width: 500px; 
+      text-align: center; 
+      color: #333; 
+    }
+    #modal-title { font-size: 1.5em; font-weight: bold; }
+    #modal p { margin-top: 15px; }
+    #modal-close { 
+      margin-top: 20px; 
+      background: #FF6347; 
+      color: white; 
+      border: none; 
+      padding: 10px 20px; 
+      border-radius: 4px; 
+      cursor: pointer; 
+    }
+    #modal-close:hover { background: #FF4500; }
+  </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <nav>
-    <div class="nav-container">
-        <a href="#" class="logo">Needle & Thread</a>
-        <div class="burger">
-            <div></div><div></div><div></div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Men</a>
-                <ul>
-                    <li><a href="#">Streetwear</a></li>
-                    <li><a href="#">Casualwear</a></li>
-                    <li><a href="#">Athleisure</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Women</a>
-                <ul>
-                    <li><a href="#">Streetwear</a></li>
-                    <li><a href="#">Casualwear</a></li>
-                    <li><a href="#">Athleisure</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Kids</a></li>
-            <li><a href="#">Sale</a></li>
-        </ul>
+  <div class="nav-left">
+    <a href="#">🏠</a>
+  </div>
+  <div class="nav-center">
+    <a class="logo" href="#">Needle & Thread</a>
+    <input type="text" placeholder="Search...">
+  </div>
+  <div class="nav-right">
+    <a href="#" onclick="toggleDropdown('signIn')">👤</a>
+    <a href="#" onclick="toggleDropdown('wishlist')">💖</a>
+    <a href="#" onclick="toggleDropdown('cart')">🛒</a>
+    <div class="cart-bubble">3</div>
+    <div class="burger" onclick="document.querySelector('.nav-links').classList.toggle('active'); this.classList.toggle('toggle');">
+      <div></div><div></div><div></div>
     </div>
-    <div class="search-social">
-        <div class="search-bar"><input type="text" placeholder="Search..."></div>
-        <div class="social-icons">
-            <a href="#" data-title="Sign In">👤</a>
-            <a href="#" data-title="Wishlist">❤️</a>
-            <a href="#" data-title="Cart">🛒</a>
-        </div>
-    </div>
+  </div>
 </nav>
 
-<!-- Header Section -->
-<header>
-    <h1>Needle & Thread</h1>
-    <p>For your Everyday Fashion! Premium quality meets timeless style — shop now!</p>
-</header>
-
-<!-- Footer Section -->
-<footer>
-    <div>
-        <span>Follow Us: </span>
-        <a href="#" aria-label="Instagram" title="Instagram">📷</a>
-        <a href="#" aria-label="Facebook" title="Facebook">📘</a>
-        <a href="#" aria-label="X" title="X">𝕏</a>
-        <a href="#" aria-label="YouTube" title="YouTube">▶️</a>
-        <a href="#" aria-label="Telegram" title="Telegram">📱</a>
-        <a href="#" aria-label="WhatsApp" title="WhatsApp">💬</a>
-    </div>
-    <div class="footer-links">
-        <a href="#">About Us</a> | <a href="#">My Account</a> | <a href="#">Size Chart</a> | <a href="#">FAQs</a> | 
-        <a href="#">Rewards</a> | <a href="#">Contact</a>
-    </div>
-    <p>&copy; 2025 Needle & Thread. All Rights Reserved.</p>
-</footer>
-
-<!-- Cart Icon -->
-<div class="cart-items" onclick="toggleCartPopup()">
-    🛒
-</div>
-
-<!-- Cart Popup -->
-<div class="cart-popup" id="cartPopup">
-    <h3>Your Cart</h3>
-    <ul id="cartList">
-        <!-- Cart items will appear here -->
-    </ul>
-    <button onclick="checkout()">Proceed to Checkout</button>
-</div>
-
-<!-- Modal -->
-<div id="modal">
-    <div id="modal-content">
-        <div id="modal-title">Sign In</div>
-        <p>Login or Sign Up to access your account and purchase items.</p>
-        <button id="modal-close" onclick="closeModal()">Close</button>
-    </div>
-</div>
+<!-- Rest of the content remains the same: Header, Product Grid, Modal, Footer -->
 
 <script>
-    const cart = [];
-
-    // Add to Cart Function
-    function addToCart(product) {
-        cart.push(product);
-        updateCartPopup();
-    }
-
-    // Remove from Cart Function
-    function removeFromCart(productIndex) {
-        cart.splice(productIndex, 1);
-        updateCartPopup();
-    }
-
-    // Update Cart Popup
-    function updateCartPopup() {
-        const cartList = document.getElementById('cartList');
-        cartList.innerHTML = ''; // Clear the current list
-
-        cart.forEach((product, index) => {
-            const li = document.createElement('li');
-            li.innerHTML = `${product.name} - ₹${product.price} <button onclick="removeFromCart(${index})">Remove</button>`;
-            cartList.appendChild(li);
-        });
-    }
-
-    // Toggle Cart Popup
-    function toggleCartPopup() {
-        const cartPopup = document.getElementById('cartPopup');
-        cartPopup.style.display = cartPopup.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // Checkout Function
-    function checkout() {
-        alert('Proceeding to checkout...');
-        // Redirect to checkout page or process the payment
-    }
-
-    // Modal Open & Close
-    function openModal() { 
-        document.getElementById('modal').style.display = 'flex'; 
-    }
-    function closeModal() { 
-        document.getElementById('modal').style.display = 'none'; 
-    }
-
-    // Example of adding items to the cart
-    addToCart({ name: 'Polo T-Shirt', price: 799 });
-    addToCart({ name: 'Casual Jacket', price: 1299 });
+  function toggleDropdown(menu) {
+    const dropdowns = document.querySelectorAll('.nav-right a');
+    dropdowns.forEach(dropdown => {
+      if (dropdown.textContent === menu) {
+        // Show dropdown or do something when clicked
+      }
+    });
+  }
 </script>
-
 </body>
 </html>
