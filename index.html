@@ -59,23 +59,6 @@
       font-size: 1.4em;
       margin-left: 20px;
       color: #333;
-      position: relative;
-    }
-
-    /* Cart bubble style */
-    .nav-right .cart-bubble {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: #FF6347;
-      color: white;
-      font-size: 0.8em;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 18px;
-      display: none; /* Hidden by default */
     }
 
     .burger { display: none; flex-direction: column; justify-content: space-between; width: 25px; height: 18px; cursor: pointer; }
@@ -255,27 +238,75 @@
     <input type="text" placeholder="Search...">
   </div>
   <div class="nav-right">
-    <a href="#" onclick="toggleDropdown('signIn')">👤</a>
-    <a href="#" onclick="toggleDropdown('wishlist')">💖</a>
-    <a href="#" onclick="toggleDropdown('cart')">🛒</a>
-    <div class="cart-bubble">3</div>
+    <a href="#">👤</a>
+    <a href="#">💖</a>
+    <a href="#">🛒</a>
     <div class="burger" onclick="document.querySelector('.nav-links').classList.toggle('active'); this.classList.toggle('toggle');">
       <div></div><div></div><div></div>
     </div>
   </div>
 </nav>
 
-<!-- Rest of the content remains the same: Header, Product Grid, Modal, Footer -->
+<ul class="nav-links">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Shop</a>
+    <ul>
+      <li><a href="#">Men</a></li>
+      <li><a href="#">Women</a></li>
+      <li><a href="#">Kids</a></li>
+    </ul>
+  </li>
+  <li><a href="#">About</a></li>
+  <li><a href="#">Contact</a></li>
+</ul>
+
+<header> 
+  <h1>Welcome to Needle & Thread</h1>
+  <p>Discover the best in fashion, crafted with care and quality.</p>
+</header>
+
+<div class="product-grid">
+  <h2>Our Latest Collections</h2>
+  <div class="grid">
+    <div class="product-card">
+      <img src="https://via.placeholder.com/250" alt="Product 1" />
+      <h3>Product 1</h3>
+      <p>$49.99</p>
+      <button>Add to Cart</button>
+    </div>
+    <!-- Add more product cards here -->
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms & Conditions</a>
+    <a href="#">FAQ</a>
+  </div>
+  <p>&copy; 2025 Needle & Thread</p>
+</footer>
+
+<div id="modal">
+  <div id="modal-content">
+    <div id="modal-title">Special Offer!</div>
+    <p>Get 10% off on your first purchase. Use code: WELCOME10</p>
+    <button id="modal-close">Close</button>
+  </div>
+</div>
 
 <script>
-  function toggleDropdown(menu) {
-    const dropdowns = document.querySelectorAll('.nav-right a');
-    dropdowns.forEach(dropdown => {
-      if (dropdown.textContent === menu) {
-        // Show dropdown or do something when clicked
-      }
-    });
-  }
+  document.querySelector('#modal-close').addEventListener('click', function() {
+    document.querySelector('#modal').style.display = 'none';
+  });
+
+  // Show the modal when the page loads
+  window.onload = function() {
+    setTimeout(function() {
+      document.querySelector('#modal').style.display = 'flex';
+    }, 1000);  // Adjust time as needed
+  };
 </script>
+
 </body>
 </html>
