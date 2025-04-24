@@ -79,7 +79,34 @@
     .search-bar input:hover {
       border: 2px solid #FF6347;
     }
+
     .social-icons { display: flex; gap: 10px; }
+    .dropdown { position: relative; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 35px;
+      background: white;
+      color: #333;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      min-width: 150px;
+      z-index: 1000;
+    }
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.2s;
+    }
+    .dropdown-content a:hover {
+      background: #f0f0f0;
+    }
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
     .social-icons a {
       color: #333;
       font-size: 1.2em;
@@ -89,19 +116,6 @@
     }
     .social-icons a:hover {
       color: #FF6347;
-    }
-    .social-icons a:hover::after {
-      content: attr(data-title);
-      position: absolute;
-      background: #222;
-      color: #fff;
-      padding: 2px 6px;
-      border-radius: 4px;
-      top: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      font-size: 0.75em;
     }
 
     @media (max-width: 768px) {
@@ -215,54 +229,6 @@
     .footer-links { margin-top: 10px; }
     footer p { margin-top: 15px; }
   </style>
-  .dropdown-panel {
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  z-index: 1001;
-  width: 250px;
-  display: none;
-}
-.dropdown-panel h3 {
-  margin-bottom: 10px;
-}
-.dropdown-panel input {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-}
-.dropdown-panel button {
-  background: #FF6347;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.dropdown-panel ul {
-  list-style: none;
-  padding: 0;
-}
-.dropdown-panel ul li {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-  border-bottom: 1px solid #eee;
-}
-.dropdown-panel ul li button {
-  background: transparent;
-  color: #FF6347;
-  border: none;
-  font-size: 1em;
-  cursor: pointer;
-}
 </head>
 <body>
 
@@ -295,9 +261,28 @@
   <div class="search-social">
     <div class="search-bar"><input type="text" placeholder="Search..."></div>
     <div class="social-icons">
-      <a href="#" data-title="Sign In">👤</a>
-      <a href="#" data-title="Wishlist">❤️</a>
-      <a href="#" data-title="Cart">🛒</a>
+      <div class="dropdown" id="signInDropdown">
+        <a href="#" data-title="Sign In" onclick="toggleDropdown('signInDropdown')">👤</a>
+        <div class="dropdown-content">
+          <a href="#">Login</a>
+          <a href="#">Register</a>
+          <a href="#">Profile</a>
+        </div>
+      </div>
+      <div class="dropdown" id="wishlistDropdown">
+        <a href="#" data-title="Wishlist" onclick="toggleDropdown('wishlistDropdown')">❤️</a>
+        <div class="dropdown-content">
+          <a href="#">View Wishlist</a>
+          <a href="#">Saved Items</a>
+        </div>
+      </div>
+      <div class="dropdown" id="cartDropdown">
+        <a href="#" data-title="Cart" onclick="toggleDropdown('cartDropdown')">🛒</a>
+        <div class="dropdown-content">
+          <a href="#">View Cart</a>
+          <a href="#">Checkout</a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -364,55 +349,21 @@
     navLinks.classList.toggle('active');
     burger.classList.toggle('toggle');
   });
-  const signInIcon = document.querySelector('[data-title="Sign In"]');
-const wishlistIcon = document.querySelector('[data-title="Wishlist"]');
-const cartIcon = document.querySelector('[data-title="Cart"]');
 
-const signInPanel = document.getElementById('signin-panel');
-const wishlistPanel = document.getElementById('wishlist-panel');
-const cartPanel = document.getElementById('cart-panel');
+  function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    const isActive = dropdown.classList.contains('active');
 
-function togglePanel(panel) {
-  [signInPanel, wishlistPanel, cartPanel].forEach(p => {
-    if (p !== panel) p.style.display = 'none';
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    if (!isActive) dropdown.classList.add('active');
+  }
+
+  window.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    }
   });
-  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-}
-
-signInIcon.addEventListener('click', () => togglePanel(signInPanel));
-wishlistIcon.addEventListener('click', () => togglePanel(wishlistPanel));
-cartIcon.addEventListener('click', () => togglePanel(cartPanel));
-
-function removeItem(button) {
-  const li = button.closest('li');
-  li.remove();
-}
 </script>
-<!-- Sign-In Dropdown -->
-<div class="dropdown-panel" id="signin-panel">
-  <h3>Sign In</h3>
-  <input type="email" placeholder="Email" />
-  <input type="password" placeholder="Password" />
-  <button>Login</button>
-</div>
-
-<!-- Wishlist Dropdown -->
-<div class="dropdown-panel" id="wishlist-panel">
-  <h3>Wishlist</h3>
-  <ul>
-    <li>Classic Tee ❤️</li>
-    <li>Urban Hoodie ❤️</li>
-  </ul>
-</div>
-
-<!-- Cart Dropdown -->
-<div class="dropdown-panel" id="cart-panel">
-  <h3>Cart</h3>
-  <ul id="cart-items">
-    <li>Classic Tee <button onclick="removeItem(this)">❌</button></li>
-    <li>Urban Hoodie <button onclick="removeItem(this)">❌</button></li>
-  </ul>
-</div>
 
 </body>
 </html>
