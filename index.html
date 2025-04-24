@@ -30,18 +30,6 @@
     .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
     .nav-links li { position: relative; }
     .nav-links li a { text-decoration: none; color: #333; font-size: 1em; padding: 10px; display: inline-block; transition: color 0.3s ease; }
-    .nav-links li a:hover::after {
-      content: attr(data-title);
-      position: absolute;
-      background: #222;
-      color: #fff;
-      padding: 4px 8px;
-      border-radius: 4px;
-      top: 30px;
-      left: 0;
-      white-space: nowrap;
-      font-size: 0.8em;
-    }
     .nav-links li a:hover { color: #FF6347; }
     .nav-links li ul {
       display: none;
@@ -79,76 +67,43 @@
     .search-bar input:hover {
       border: 2px solid #FF6347;
     }
+    .social-icons { display: flex; gap: 10px; align-items: center; position: relative; }
 
-    .social-icons { display: flex; gap: 10px; }
-    .dropdown { position: relative; }
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
       top: 35px;
       background: white;
-      color: #333;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       border-radius: 8px;
-      min-width: 150px;
-      z-index: 1000;
-    }
-    .dropdown-content a {
-      display: block;
-      padding: 10px;
-      text-decoration: none;
-      color: #333;
-      transition: background 0.2s;
-    }
-    .dropdown-content a:hover {
-      background: #f0f0f0;
+      min-width: 200px;
+      z-index: 1001;
     }
     .dropdown.active .dropdown-content {
       display: block;
     }
-    .social-icons a {
-      color: #333;
-      font-size: 1.2em;
-      text-decoration: none;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-    .social-icons a:hover {
-      color: #FF6347;
-    }
 
-    @media (max-width: 768px) {
-      .burger { display: flex; }
-      .nav-links {
-        position: fixed;
-        top: 60px;
-        right: -100%;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        background: rgba(34,34,34,0.9);
-        height: 100vh;
-        width: 200px;
-        padding-top: 20px;
-        transition: right 0.3s ease;
-      }
-      .nav-links.active { right: 0; }
-      .nav-links li { width: 100%; text-align: center; }
-      .nav-links li ul {
-        position: static;
-        display: none;
-        background: rgba(0,0,0,0.5);
-      }
-      .nav-links li.show ul { display: block; }
-      .nav-links li a {
-        color: white;
-        font-size: 1.2em;
-        padding: 15px 20px;
-      }
-      .nav-links li a:hover { background: #FF6347; }
-      .search-social { margin-top: 10px; justify-content: center; width: 100%; }
+    .cart-bubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FF6347;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1em;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 9999;
+      transition: transform 0.3s ease;
     }
+    .cart-bubble:hover { transform: scale(1.1); }
 
     header {
       height: 80vh;
@@ -197,27 +152,6 @@
     }
     .product button:hover { background: #FF4500; }
 
-    .cart-bubble {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #FF6347;
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1em;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      cursor: pointer;
-      z-index: 9999;
-      transition: transform 0.3s ease;
-    }
-    .cart-bubble:hover { transform: scale(1.1); }
-
     footer {
       background: rgba(34,34,34,0.9);
       color: white;
@@ -261,26 +195,12 @@
   <div class="search-social">
     <div class="search-bar"><input type="text" placeholder="Search..."></div>
     <div class="social-icons">
-      <div class="dropdown" id="signInDropdown">
-        <a href="#" data-title="Sign In" onclick="toggleDropdown('signInDropdown')">👤</a>
-        <div class="dropdown-content">
-          <a href="#">Login</a>
-          <a href="#">Register</a>
-          <a href="#">Profile</a>
-        </div>
-      </div>
-      <div class="dropdown" id="wishlistDropdown">
-        <a href="#" data-title="Wishlist" onclick="toggleDropdown('wishlistDropdown')">❤️</a>
-        <div class="dropdown-content">
-          <a href="#">View Wishlist</a>
-          <a href="#">Saved Items</a>
-        </div>
-      </div>
+      <a href="#" data-title="Sign In">👤</a>
+      <a href="#" data-title="Wishlist">❤️</a>
       <div class="dropdown" id="cartDropdown">
         <a href="#" data-title="Cart" onclick="toggleDropdown('cartDropdown')">🛒</a>
-        <div class="dropdown-content">
-          <a href="#">View Cart</a>
-          <a href="#">Checkout</a>
+        <div class="dropdown-content" id="cartItems">
+          <p style="padding: 10px;">Cart is empty</p>
         </div>
       </div>
     </div>
@@ -313,7 +233,7 @@
   </div>
 </section>
 
-<div class="cart-bubble" onclick="alert('Cart clicked!')">
+<div class="cart-bubble" onclick="toggleDropdown('cartDropdown')">
   🛒<span id="cartCount">0</span>
 </div>
 
@@ -337,10 +257,41 @@
 </footer>
 
 <script>
-  let cartCount = 0;
+  let cartItems = [];
+  const cartCountEl = document.getElementById('cartCount');
+  const cartItemsEl = document.getElementById('cartItems');
+
   function addToCart() {
-    cartCount++;
-    document.getElementById('cartCount').textContent = cartCount;
+    const id = Date.now();
+    const item = { id, name: `Product ${cartItems.length + 1}` };
+    cartItems.push(item);
+    updateCartUI();
+  }
+
+  function removeFromCart(id) {
+    cartItems = cartItems.filter(item => item.id !== id);
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    cartCountEl.textContent = cartItems.length;
+    if (cartItems.length === 0) {
+      cartItemsEl.innerHTML = `<p style="padding: 10px;">Cart is empty</p>`;
+    } else {
+      cartItemsEl.innerHTML = cartItems.map(item =>
+        `<div style="display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+          <span>${item.name}</span>
+          <button onclick="removeFromCart(${item.id})" style="background: none; border: none; color: red; font-weight: bold; cursor: pointer;">❌</button>
+        </div>`
+      ).join('');
+    }
+  }
+
+  function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    const isActive = dropdown.classList.contains('active');
+    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+    if (!isActive) dropdown.classList.add('active');
   }
 
   const burger = document.querySelector('.burger');
@@ -350,20 +301,11 @@
     burger.classList.toggle('toggle');
   });
 
-  function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
-    const isActive = dropdown.classList.contains('active');
-
-    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
-    if (!isActive) dropdown.classList.add('active');
-  }
-
   window.addEventListener('click', function(e) {
-    if (!e.target.closest('.dropdown')) {
+    if (!e.target.closest('.dropdown') && !e.target.closest('.cart-bubble')) {
       document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
     }
   });
 </script>
-
 </body>
 </html>
